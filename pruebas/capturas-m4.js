@@ -1,0 +1,32 @@
+// Capturas M4 (la gran prueba) → /tmp/claude-0/m4cap
+const { chromium } = require(require('child_process').execSync('npm root -g').toString().trim() + '/playwright');
+const path = require('path'), fs = require('fs');
+const espera = ms => new Promise(r => setTimeout(r, ms)), DIR = '/tmp/claude-0/m4cap'; fs.mkdirSync(DIR, { recursive: true });
+(async () => {
+  const b = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
+  const pg = await b.newPage({ viewport: { width: 1280, height: 800 } });
+  const errs = []; pg.on('pageerror', e => errs.push(e.message)); pg.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+  await pg.goto('file://' + path.join(__dirname, '..', 'MI-PIANO-3-M3.html')); await pg.waitForFunction(() => window.__mp3 && window.__mp3.listo, null, { timeout: 60000 });
+  const ev = (f, x) => pg.evaluate(f, x), L = [];
+  const cap = async (n, r) => { const f = path.join(DIR, n + '.png'); await pg.screenshot({ path: f }); L.push([f, r]); };
+  await ev(() => { localStorage.clear(); __mp3.fecha('2026-12-09'); __mp3.perfil('sarah'); SON5.iniciar(); const m = m2_(); m.primerDia = true; m.corcheas = 140; m.notasVistas = [64, 67, 60, 62, 65]; });
+  const dia = async (d, paso, ms, n, r) => { await ev(([d, paso]) => { MENU5.cerrar(); __mp3.pararNino(); m2_().diaForzado = d; __mp3.paradaDirecta('salon'); ESC.anuncio.dur = 0; setTimeout(() => { ESC.irPaso(paso); __mp3.nino('bueno', 'midi', { errorP: 0 }); }, 300); }, [d, paso]); await espera(ms); await cap(n, r); };
+  await dia(0, 3, 4200, '01-dia1', 'Día 1: una nota (MI), dedo 3, sin pentagrama: bloques y sílabas');
+  await dia(1, 4, 5200, '02-dia2', 'Día 2: el silencio «sh» (bloque punteado, no se toca)');
+  await dia(2, 4, 5200, '03-dia3', 'Día 3: taca (dos notas en un pulso)');
+  await dia(4, 4, 5200, '04-dia5', 'Día 5: MI y SOL; el pentagrama aparece tenue');
+  await dia(8, 4, 5200, '05-dia9', 'Día 9: cuatro notas, pentagrama completo, dedos');
+  await ev(() => { __mp3.pararNino(); m2_().diaForzado = 4; MENU5.cerrar(); ESCENA_CAEN5.volver = { lugar: LUGARES5.belen }; irA(ESCENA_CAEN5, { sinTransicion: true }); __mp3.nino('bueno', 'midi', { errorP: 0 }); }); await espera(9000); await cap('06-caen', 'Notas que caen (3 corazones)');
+  await ev(() => { __mp3.pararNino(); CONCIERTO5.cancion = 'jingle'; abrirModo5('concierto'); }); await espera(1400); await ev(() => { ESC.anuncio.dur = 0; __mp3.nino('bueno', 'midi', { errorP: 0 }); }); await espera(9000); await cap('07-concierto', 'Sala de conciertos: la familia escucha');
+  await ev(() => { __mp3.pararNino(); abrirModo5('kiosco'); }); await espera(1400); await ev(() => { ESC.anuncio.dur = 0; __mp3.nino('bueno', 'midi', { errorP: 0 }); }); await espera(9000); await cap('08-kiosco', 'Kiosco: la banda toca, tú llevas el pulso');
+  await ev(() => { __mp3.pararNino(); abrirModo5('batalla'); }); await espera(1400); await ev(() => { ESC.anuncio.dur = 0; __mp3.nino('bueno', 'midi', { errorP: 0 }); }); await espera(5000); await cap('09-batalla', 'Batalla de eco con el pastorcito');
+  await ev(() => { __mp3.pararNino(); ESCENA_MUSEO5.volver = { lugar: LUGARES5.belen }; irA(ESCENA_MUSEO5, { sinTransicion: true }); }); await espera(700); await ev(() => ESC.tocar(300, 260)); await espera(3000); await cap('10-museo', 'Museo de Belén');
+  await ev(() => { ['arpa', 'barroco', 'medieval', 'cuadro', 'reloj', 'estante', 'trofeos', 'candelabro'].forEach(id => comprar5(TIENDA5.find(x => x.id === id))); MENU5.abrir('tienda'); }); await espera(700); await cap('11-tienda', 'Tienda del luthier (corcheas doradas)');
+  await ev(() => { MENU5.abrir('vestidor'); }); await espera(600); await cap('12-vestidor', 'Vestidor: trajes comprados');
+  await ev(() => { MENU5.cerrar(); m2_().traje = 'barroco'; __mp3.ir('n-casa'); }); await espera(1800); await cap('13-casa', 'Mi casa decorada (y Sarah de barroco)');
+  await ev(() => { GUARDA.d.verMundos = false; __mp3.ir('mapa'); ESCENA_MAPA.entrar(); }); await espera(600); await ev(() => { ESCENA_MAPA.tocar(...(() => { const c = CIUDADES5.find(c => c.id === 'natal'); return [c.x - ESCENA_MAPA.camX + 640, c.y]; })()); }).catch(() => { }); await espera(2500); await cap('14-mapa', 'Mapa vivo: olas, nubes, banderas, viaje caminando');
+  await ev(() => { __mp3.ir('belen'); __mp3.caminar(17, 22); }); await espera(1200); await cap('15-belen', 'Belén: más color; Sarah camina (4 cuadros), Tic vuela');
+  await ev(() => { __mp3.papas('papa'); }); await espera(600); await cap('16-papa', 'Modo Papá: atajos, simular día, dueto, ver mundos');
+  fs.writeFileSync(path.join(DIR, 'lista.json'), JSON.stringify(L)); console.log(JSON.stringify({ capturas: L.length, errores: errs.slice(0, 8) }));
+  await b.close();
+})();

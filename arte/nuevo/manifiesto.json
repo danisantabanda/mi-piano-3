@@ -1,0 +1,353 @@
+[
+ {
+  "archivo": "campanero-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "campanero-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "campanero-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "campanero-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "campanero-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "campanero-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El campanero",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mama-andar.webp",
+  "uso": "caminar en el mundo (Belén, aldea, mapa)",
+  "pantalla": "mundo desde arriba",
+  "personaje": "Mamá",
+  "pose": "hoja 4x4: abajo,izquierda,derecha,arriba",
+  "id_gemini": "2026-11-24-mp3-mama-andar-43966c8d",
+  "original": "original/mama-andar.jpg"
+ },
+ {
+  "archivo": "mesonero-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mesonero-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mesonero-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mesonero-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mesonero-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "mesonero-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = tocar la puerta / la campana)",
+  "pantalla": "rincón de la posada · rincón de las campanas · diálogos",
+  "personaje": "El mesonero",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-mesonero-campanero-ee010c8e",
+  "original": "original/mesonero-campanero.jpg"
+ },
+ {
+  "archivo": "panadera-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "panadera-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "panadera-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "panadera-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "panadera-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "panadera-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La panadera",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "papa-andar.webp",
+  "uso": "caminar en el mundo (Belén, aldea, mapa)",
+  "pantalla": "mundo desde arriba",
+  "personaje": "Papá",
+  "pose": "hoja 4x4: abajo,izquierda,derecha,arriba",
+  "id_gemini": "2026-11-24-mp3-papa-andar-b9be6d64",
+  "original": "original/papa-andar.jpg"
+ },
+ {
+  "archivo": "pastor-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastor-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastor-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastor-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastor-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastor-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastor",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "pastorcito-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = flauta)",
+  "pantalla": "rincón del pastor · arena del eco · diálogos",
+  "personaje": "El pastorcito",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-pastor-pastorcito-50c3e742",
+  "original": "original/pastor-pastorcito.jpg"
+ },
+ {
+  "archivo": "tic-flotar.webp",
+  "uso": "Tic flotando detrás del niño en el mundo (fila 3 = espejo de la fila 2)",
+  "pantalla": "mundo desde arriba",
+  "personaje": "Tic",
+  "pose": "hoja 4x4: abajo,izquierda,derecha,arriba",
+  "id_gemini": "2026-11-24-mp3-tic-flotar2-61db34f7",
+  "original": "original/tic-flotar.jpg"
+ },
+ {
+  "archivo": "vecina-anima.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "anima",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "vecina-celebra.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "celebra",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "vecina-habla.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "habla",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "vecina-quieto.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "quieto",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "vecina-senala.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "senala",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ },
+ {
+  "archivo": "vecina-toca.webp",
+  "uso": "retrato y animación en diálogos y rincones (toca = canta / muestra el pan)",
+  "pantalla": "rincón de la vecina · plaza · diálogos",
+  "personaje": "La vecina cantora",
+  "pose": "toca",
+  "id_gemini": "2026-11-24-mp3-vecina-panadera-c94ce3c9",
+  "original": "original/vecina-panadera.jpg"
+ }
+]

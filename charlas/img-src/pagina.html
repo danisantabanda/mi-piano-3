@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8">
+<style>
+@font-face{font-family:Outfit;font-weight:700;src:url(../../f4/src/fuentes/Outfit-Bold.woff)}
+@font-face{font-family:Outfit;font-weight:500;src:url(../../f4/src/fuentes/Outfit-Bold.woff)}
+@font-face{font-family:"Pixelify Sans";src:url(../../f4/src/fuentes/PixelifySans-Medium.woff)}
+html,body{margin:0;background:#000}canvas{display:block}
+</style>
+<canvas id="c" width="1280" height="720"></canvas>
+<script src="../../f4/src/pixel.js"></script><script src="../../f4/src/heroes.js"></script><script src="../../f4/src/sprites.js"></script>
+<script src="../../f4/src/arte.js"></script><script src="../../f4/src/arte2.js"></script><script src="../../f4/src/arte3.js"></script>
+<script src="lib.js"></script><script src="mundo.js"></script><script src="personajes.js"></script><script src="vec.js"></script><script src="escenas.js"></script><script src="escenas2.js"></script><script src="escenas3.js"></script><script src="escenas4.js"></script><script src="escenas5.js"></script><script src="iso.js"></script><script src="escenas6.js"></script><script src="escenas7.js"></script><script src="escenas8.js"></script><script src="escenas9.js"></script>
+<script>
+(async () => {
+  const id = decodeURIComponent(location.hash.slice(1)); const ctx = document.getElementById('c').getContext('2d');
+  await Promise.all([document.fonts.load('700 20px Outfit'), document.fonts.load('20px "Pixelify Sans"'), document.fonts.load('20px FreeSerif')]); await document.fonts.ready;
+  try { ctx.fillStyle = '#1c1030'; ctx.fillRect(0, 0, 1280, 720); await ESCENAS[id](ctx); window.__listo = 'ok'; } catch (e) { window.__listo = 'ERROR ' + e.message + ' ' + e.stack; }
+})();
+</script>

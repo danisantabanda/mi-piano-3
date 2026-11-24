@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es-CO"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#1c1030"><meta name="mobile-web-app-capable" content="yes">
+<title>Mi Piano 3</title>
+<style>
+@font-face{font-family:Crimson;font-weight:700;src:url(data:font/ttf;base64,/*@fuente CrimsonPro-Bold.ttf*/) format('truetype')}
+@font-face{font-family:Outfit;font-weight:400 600;src:url(data:font/ttf;base64,/*@fuente Outfit-Regular.ttf*/) format('truetype')}
+@font-face{font-family:Outfit;font-weight:700;src:url(data:font/woff;base64,/*@fuente Outfit-Bold.woff*/) format('woff')}
+@font-face{font-family:"Pixelify Sans";src:url(data:font/woff;base64,/*@fuente PixelifySans-Medium.woff*/) format('woff')}
+html,body{margin:0;height:100%;background:#1c1030;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+canvas#juego{position:fixed;left:0;top:0;display:block}
+#ui{position:fixed;left:0;top:0;width:1280px;height:800px;transform-origin:0 0;pointer-events:none;font-family:Outfit,sans-serif}
+#menu{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(42,26,58,.55);pointer-events:auto}
+#menu.abierto{display:flex}
+#menu .caja{min-width:460px;max-width:760px;max-height:640px;background:#fffaf4;border:6px solid #2a1a3a;border-radius:24px;padding:34px 44px;display:flex;flex-direction:column;gap:16px;box-shadow:12px 12px 0 #2a1a3a;color:#2a1a3a;position:relative;overflow:hidden}#menu .caja::before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:linear-gradient(90deg,#ff5a5a 0 14.3%,#ff9a3c 0 28.6%,#ffd046 0 42.9%,#5fd36a 0 57.1%,#3fc7f0 0 71.4%,#5a7dff 0 85.7%,#b86bff 0);border-bottom:4px solid #2a1a3a}
+#menu h2{font:700 44px Outfit,sans-serif;margin:8px 0 6px;text-align:center;letter-spacing:-.5px}
+#menu button{font:700 28px Outfit,sans-serif;color:#2a1a3a;background:#fff;border:5px solid #2a1a3a;border-radius:18px;padding:14px 26px;cursor:pointer;box-shadow:6px 6px 0 #2a1a3a}
+#menu button.grande{background:#ff5a5a;color:#fff}
+#menu button:active{transform:translate(4px,4px);box-shadow:2px 2px 0 #2a1a3a}
+#menu .info{font-size:22px;line-height:1.45;overflow:auto;max-height:330px}
+#menu .info p{margin:0 0 8px}
+#menu .nota{font-size:17px;color:#6a4a2a}
+#menu.papas .caja{width:900px;max-width:900px;max-height:740px;padding:26px 34px;gap:10px}
+#menu.papas .info{max-height:520px;font-size:20px}
+#menu .pest{display:flex;gap:6px;flex-wrap:wrap}#menu .pest button{font-size:17px;padding:7px 13px;border-width:3px}
+#menu .tarj h1{font:700 28px Crimson,serif;margin:0 0 6px}#menu .tarj h2{font:700 22px Crimson,serif;text-align:left;margin:10px 0 4px}#menu .tarj table{border-collapse:collapse;width:100%;font-size:16px}#menu .tarj td{border:1px solid #d9c49a;padding:4px 8px;vertical-align:top}#menu .tarj p{font-size:17px}#menu .pest button.on{background:#3a2414;color:#fbf1d8}
+#menu .fila{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0}#menu .fila button{font-size:19px;padding:7px 14px;border-width:3px}
+#menu .barras{display:flex;gap:12px;align-items:flex-end;height:150px;margin:14px 0 2px}#menu .barras div{flex:1;text-align:center;font-size:15px;color:#6a4a2a}
+#menu .barras i{display:block;margin:0 auto 4px;width:70%;background:linear-gradient(#ffd046,#e6a21b);border:3px solid #3a2414;border-radius:8px 8px 3px 3px}
+#menu .tarj{background:#fff;border:4px solid #2a1a3a;border-radius:16px;padding:10px 14px;margin:10px 0;box-shadow:5px 5px 0 #2a1a3a}
+#menu .tarj h3{margin:0 0 6px;font:700 24px Outfit,sans-serif}#menu .ok{color:#2e8b6a;font-weight:700}#menu .cuesta{color:#d2452e;font-weight:700}
+#cargando{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#fffaf4;color:#2a1a3a;font:700 44px Outfit,sans-serif;z-index:9}
+#cargando .marco{width:420px;height:22px;border:4px solid #2a1a3a;border-radius:11px;overflow:hidden;box-shadow:5px 5px 0 #2a1a3a;background:#fff}
+#cargando-barra{height:100%;width:0;background:linear-gradient(90deg,#ff5a5a,#ff9a3c,#ffd046,#5fd36a,#3fc7f0,#5a7dff,#b86bff);transition:width .15s}
+#impresion{display:none}
+@media print{
+  @page{size:letter portrait;margin:12mm}
+  html,body{height:auto;overflow:visible;background:#fff!important}
+  body>*:not(#impresion){display:none!important}
+  #impresion{display:block;color:#2a1a3a;font-family:Outfit,sans-serif}
+  #impresion .hoja{page-break-after:always;break-after:page;min-height:240mm;position:relative}
+  #impresion .hoja:last-child{page-break-after:auto;break-after:auto}
+  #impresion h1{font:700 30pt Crimson,serif;margin:0 0 4mm}#impresion h2{font:700 17pt Crimson,serif;margin:5mm 0 2mm}
+  #impresion p,#impresion li{font-size:12.5pt;line-height:1.45;margin:0 0 2mm}#impresion .pie{position:absolute;bottom:0;left:0;right:0;font-size:9pt;color:#8a7a6a;text-align:center}
+  #impresion .nombre{font-size:13pt;margin-bottom:4mm}#impresion svg{display:block;max-width:100%}
+  #impresion table{border-collapse:collapse;width:100%}#impresion td,#impresion th{border:1px solid #c9b48e;padding:2mm 3mm;font-size:11.5pt;vertical-align:top;text-align:left}
+}
+</style></head>
+<body>
+<canvas id="juego"></canvas>
+<div id="ui"><div id="menu"></div></div>
+<div id="impresion"></div>
+<div id="cargando"><div>Mi Piano · El viaje de Bach</div><div class="marco"><div id="cargando-barra"></div></div></div>
+<script src="voces/manifiesto.js" onerror="window.VOCES=null"></script>
+<script>
+/*@guion*/
+/*@inline pixel.js*//*@inline heroes.js*//*@inline sprites.js*//*@inline base.js*//*@inline vec.js*//*@inline iso.js*//*@inline mundo.js*//*@inline personajes.js*//*@inline escudos.js*//*@inline muebles.js*//*@inline mapa-base.js*//*@inline motor.js*//*@inline kit-sonido.js*//*@inline sonido.js*//*@inline entrada.js*//*@inline sonido5.js*//*@inline progresion.js*//*@inline villancicos.js*//*@inline voz5.js*//*@inline lugar.js*//*@inline pueblos.js*//*@inline escenas.js*//*@inline dia.js*//*@inline papas.js*//*@inline guias.js*//*@inline modos.js*/
+/*@inline arriba-spr.js*//*@inline arriba.js*//*@inline belen-arriba.js*//*@inline mapa-arriba.js*//*@inline misiones.js*//*@inline rincones.js*//*@inline juegos.js*//*@inline arriba-pj.js*//*@inline contenido6.js*//*@inline casas6.js*/
+/*@marca figuras.js*//*@inline marca5.js*//*@inline arte7.js*/
+arrancar5();
+</script>
+<!--@web-->
+</body></html>

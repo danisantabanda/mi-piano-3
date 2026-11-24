@@ -1,0 +1,247 @@
+[
+ {
+  "id": "tic-patio-01",
+  "quien": "suave",
+  "texto": "Vamos a ponernos en modo música. Empezamos respirando."
+ },
+ {
+  "id": "hola-sarah",
+  "quien": "celebra",
+  "texto": "¡Hola, Sarah!"
+ },
+ {
+  "id": "hola-david",
+  "quien": "celebra",
+  "texto": "¡Hola, David!"
+ },
+ {
+  "id": "hola-papa",
+  "quien": "celebra",
+  "texto": "¡Hola, papá!"
+ },
+ {
+  "id": "hola-mama",
+  "quien": "celebra",
+  "texto": "¡Hola, mamá!"
+ },
+ {
+  "id": "lugar-torre",
+  "quien": "maestro",
+  "texto": "La Torre de notas."
+ },
+ {
+  "id": "lugar-ritmo",
+  "quien": "maestro",
+  "texto": "La Casa del ritmo."
+ },
+ {
+  "id": "lugar-biblioteca",
+  "quien": "maestro",
+  "texto": "La Biblioteca de teoría."
+ },
+ {
+  "id": "lugar-arena",
+  "quien": "maestro",
+  "texto": "La Arena del eco."
+ },
+ {
+  "id": "lugar-gimnasio",
+  "quien": "maestro",
+  "texto": "El Gimnasio de dedos."
+ },
+ {
+  "id": "lugar-museo",
+  "quien": "maestro",
+  "texto": "El museo de Belén."
+ },
+ {
+  "id": "lugar-kiosco",
+  "quien": "maestro",
+  "texto": "El kiosco de la banda."
+ },
+ {
+  "id": "lugar-sala",
+  "quien": "maestro",
+  "texto": "La Sala de conciertos."
+ },
+ {
+  "id": "lugar-luthier",
+  "quien": "maestro",
+  "texto": "La tienda del luthier."
+ },
+ {
+  "id": "lugar-casa",
+  "quien": "maestro",
+  "texto": "Tu casa en Belén."
+ },
+ {
+  "id": "anuncio-biblioteca",
+  "quien": "maestro",
+  "texto": "Adivina nombres, figuras y sonidos."
+ },
+ {
+  "id": "anuncio-ritmo",
+  "quien": "maestro",
+  "texto": "Ritmos en los tambores."
+ },
+ {
+  "id": "anuncio-gimnasio",
+  "quien": "maestro",
+  "texto": "Dedos rápidos: el tempo sube."
+ },
+ {
+  "id": "rincon-pastor",
+  "quien": "maestro",
+  "texto": "Escucha mi flauta y repite."
+ },
+ {
+  "id": "rincon-campanas",
+  "quien": "maestro",
+  "texto": "Las campanas cantan: tan, tan, taaan."
+ },
+ {
+  "id": "rincon-vecina",
+  "quien": "maestro",
+  "texto": "Canto una nota. Búscala en el piano."
+ },
+ {
+  "id": "rincon-pozo",
+  "quien": "maestro",
+  "texto": "Toca algo y espera: el pozo contesta."
+ },
+ {
+  "id": "rincon-posada",
+  "quien": "maestro",
+  "texto": "Toc, toc. Repite mi ritmo y te abro."
+ },
+ {
+  "id": "rincon-ovejas",
+  "quien": "maestro",
+  "texto": "Cuenta las ovejas: un, dos, tres, cuá."
+ },
+ {
+  "id": "rincon-ronda",
+  "quien": "maestro",
+  "texto": "Lleva el pulso de la ronda."
+ },
+ {
+  "id": "rincon-estrella",
+  "quien": "maestro",
+  "texto": "Toca tus notas y la estrella brilla."
+ },
+ {
+  "id": "rincon-bien-01",
+  "quien": "celebra",
+  "texto": "¡Muy bien! Belén despierta."
+ },
+ {
+  "id": "ay-otra-01",
+  "quien": "suave",
+  "texto": "Otra vez, despacito."
+ },
+ {
+  "id": "despierta-1",
+  "quien": "narrador",
+  "texto": "Despertó el pastor."
+ },
+ {
+  "id": "despierta-2",
+  "quien": "narrador",
+  "texto": "Las ovejas te esperan."
+ },
+ {
+  "id": "despierta-3",
+  "quien": "narrador",
+  "texto": "El pozo del eco despertó."
+ },
+ {
+  "id": "despierta-4",
+  "quien": "narrador",
+  "texto": "La vecina quiere cantar."
+ },
+ {
+  "id": "despierta-5",
+  "quien": "narrador",
+  "texto": "La posada tiene contraseña."
+ },
+ {
+  "id": "despierta-6",
+  "quien": "narrador",
+  "texto": "Los niños juegan a la ronda."
+ },
+ {
+  "id": "despierta-7",
+  "quien": "narrador",
+  "texto": "La clave de fa abre el museo."
+ },
+ {
+  "id": "despierta-8",
+  "quien": "narrador",
+  "texto": "Los pastores van al pesebre."
+ },
+ {
+  "id": "despierta-9",
+  "quien": "narrador",
+  "texto": "La banda afina en el kiosco."
+ },
+ {
+  "id": "despierta-10",
+  "quien": "narrador",
+  "texto": "Se abrió la Sala de conciertos."
+ },
+ {
+  "id": "despierta-11",
+  "quien": "narrador",
+  "texto": "Un ángel canta en el pesebre."
+ },
+ {
+  "id": "despierta-12",
+  "quien": "narrador",
+  "texto": "Unos sabios siguen la estrella."
+ },
+ {
+  "id": "despierta-13",
+  "quien": "narrador",
+  "texto": "Todo Belén está despierto."
+ },
+ {
+  "id": "despierta-14",
+  "quien": "narrador",
+  "texto": "¡Nochebuena! A tocar en el pesebre."
+ },
+ {
+  "id": "pesebre-bravo-01",
+  "quien": "celebra",
+  "texto": "¡Gloria a Dios! ¡Qué concierto!"
+ },
+ {
+  "id": "bach-titulo-02",
+  "quien": "narrador",
+  "texto": "Bienvenidos a Mi Piano: el viaje de Baj."
+ },
+ {
+  "id": "lugar-salon-02",
+  "quien": "maestro",
+  "texto": "El Salón de Baj."
+ },
+ {
+  "id": "anuncio-salon-02",
+  "quien": "maestro",
+  "texto": "Al Salón: algo nuevo con Baj."
+ },
+ {
+  "id": "bach-tempo-02",
+  "quien": "maestro",
+  "texto": "Ahora con el pulso de Tic: un, dos, tres, cuá."
+ },
+ {
+  "id": "cuenta-1b",
+  "quien": "maestro",
+  "texto": "Un."
+ },
+ {
+  "id": "cuenta-4b",
+  "quien": "maestro",
+  "texto": "Cuá."
+ }
+]

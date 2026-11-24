@@ -1,0 +1,62 @@
+/* =====================================================================
+   MARCA «Mi Piano · El viaje de Bach» — neobrutalismo amable (hojas tamaño carta)
+   Bordes gruesos de tinta, sombras duras desplazadas, bloques planos, mucho blanco.
+   Color solo en muñecos, notas y títulos: se imprime a color sin gastar tinta.
+   ===================================================================== */
+@font-face { font-family: Outfit; font-weight: 400; src: url(fuentes/Outfit-Regular.ttf) format('truetype'); }
+@font-face { font-family: Outfit; font-weight: 700; src: url(fuentes/Outfit-Bold.ttf) format('truetype'); }
+@font-face { font-family: Crimson; font-weight: 700; src: url(fuentes/CrimsonPro-Bold.ttf) format('truetype'); }
+@font-face { font-family: Pixelify; src: url(fuentes/PixelifySans-Medium.woff) format('woff'); }
+:root {
+  --tinta: #2a1a3a; --tinta2: #6b5a7d; --papel: #ffffff; --crema: #fffaf4; --gris: #e9e4ee;
+  --do: #ff5a5a; --re: #ff9a3c; --mi: #ffd046; --fa: #5fd36a; --sol: #3fc7f0; --la: #5a7dff; --si: #b86bff;
+  --do-o: #c23345; --re-o: #c8641c; --mi-o: #a87a0a; --fa-o: #2f9a4a; --sol-o: #1e8bbd; --la-o: #3450c4; --si-o: #7f3fc8;
+  --do-l: #ffe1de; --re-l: #ffead6; --mi-l: #fff4c8; --fa-l: #ddf6da; --sol-l: #d9f4fd; --la-l: #e0e6ff; --si-l: #f0e2ff;
+  --borde: 3px; --radio: 14px; --sombra: 5px 5px 0 var(--tinta); --sombra-s: 3px 3px 0 var(--tinta);
+}
+@page { size: letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #d9d4de; }
+body { font: 400 14px/1.4 Outfit, sans-serif; color: var(--tinta); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@media print { body { background: none; } }
+.pagina { width: 8.5in; height: 11in; padding: .5in .55in .45in; position: relative; overflow: hidden; background: var(--papel); page-break-after: always; break-after: page; margin: 0 auto; }
+@media screen { .pagina { margin: 18px auto; box-shadow: 0 2px 12px rgba(0,0,0,.18); } }
+.pagina.horizontal { width: 11in; height: 8.5in; page: horizontal; }
+@page horizontal { size: letter landscape; margin: 0; }
+img.px { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+h1, h2, h3 { margin: 0; font-weight: 700; line-height: 1.05; }
+h1 { font-size: 40px; letter-spacing: -.5px; }
+h2 { font-size: 24px; letter-spacing: -.2px; }
+h3 { font-size: 17px; }
+p { margin: 0 0 6px; }
+.serif { font-family: Crimson, serif; font-weight: 700; }
+.pix { font-family: Pixelify, monospace; letter-spacing: .5px; }
+.chico { font-size: 11.5px; color: var(--tinta2); }
+/* subrayado de marcador: un bloque plano de color detrás del título */
+.marcador { background: linear-gradient(transparent 58%, var(--c, var(--mi)) 58%, var(--c, var(--mi)) 92%, transparent 92%); padding: 0 4px; margin: 0 -4px; }
+/* caja neobrutalista */
+.caja { border: var(--borde) solid var(--tinta); border-radius: var(--radio); box-shadow: var(--sombra); background: var(--papel); padding: 14px 16px; position: relative; }
+.caja.plana { box-shadow: none; }
+.caja > .rotulo { position: absolute; top: -15px; left: 14px; background: var(--c, var(--tinta)); color: var(--tc, var(--papel)); border: var(--borde) solid var(--tinta); border-radius: 9px; padding: 2px 10px 3px; font: 700 14px Outfit; letter-spacing: .6px; text-transform: uppercase; box-shadow: var(--sombra-s); }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: var(--borde) solid var(--tinta); border-radius: 999px; padding: 3px 12px 4px; font: 700 14px Outfit; background: var(--c, var(--papel)); color: var(--tc, var(--tinta)); box-shadow: var(--sombra-s); white-space: nowrap; }
+.etiqueta { display: inline-block; background: var(--tinta); color: var(--papel); font: 700 12px Outfit; letter-spacing: 1.6px; text-transform: uppercase; padding: 4px 10px; border-radius: 7px; }
+.sticker { display: inline-block; transform: rotate(-4deg); background: var(--c, var(--mi)); border: var(--borde) solid var(--tinta); border-radius: 10px; padding: 3px 10px; font: 700 13px Outfit; box-shadow: var(--sombra-s); text-transform: uppercase; letter-spacing: .8px; }
+.fila { display: flex; gap: 14px; align-items: center; }
+.col { display: flex; flex-direction: column; gap: 10px; }
+.globo { position: relative; border: var(--borde) solid var(--tinta); border-radius: 16px; background: var(--papel); padding: 8px 12px; font: 700 15px/1.25 Crimson, serif; box-shadow: var(--sombra-s); }
+.globo::after { content: ''; position: absolute; width: 16px; height: 16px; background: var(--papel); border-right: var(--borde) solid var(--tinta); border-bottom: var(--borde) solid var(--tinta); transform: rotate(45deg); }
+.globo.der::after { right: -10px; top: calc(50% - 9px); transform: rotate(-45deg); }
+.globo.izq::after { left: -10px; top: calc(50% - 9px); transform: rotate(135deg); }
+.globo.abajo::after { bottom: -10px; left: 30px; }
+/* nota: punto de color con su nombre */
+.nota { display: inline-flex; align-items: center; justify-content: center; min-width: 46px; height: 30px; padding: 0 10px; border: var(--borde) solid var(--tinta); border-radius: 999px; font: 700 15px Outfit; background: var(--c); color: var(--tinta); }
+/* pie de página */
+.pie { position: absolute; left: .55in; right: .55in; bottom: .3in; display: flex; align-items: center; gap: 12px; font-size: 11px; color: var(--tinta2); }
+.pie .linea { flex: 1; height: 0; border-top: 2px solid var(--tinta); }
+.pie img { height: 26px; }
+/* recortables */
+.corte { border: 2px dashed var(--tinta2); }
+.tijera { font: 700 13px Outfit; color: var(--tinta2); }
+svg.fig { display: block; }
+.penta text { font-family: Outfit; font-weight: 700; }
+.penta text.sil { font-weight: 400; font-style: normal; }

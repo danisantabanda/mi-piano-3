@@ -1,0 +1,107 @@
+[
+ {
+  "id": "otra-vez-rapido",
+  "quien": "celebra",
+  "texto": "¡Otra vez! Un poquito más rápido."
+ },
+ {
+  "id": "otra-vez-banda",
+  "quien": "celebra",
+  "texto": "¡Otra vez! Ahora te acompaña la banda."
+ },
+ {
+  "id": "otra-vez-octava",
+  "quien": "celebra",
+  "texto": "¡Otra vez! Ahora más arriba."
+ },
+ {
+  "id": "otra-vez-suave",
+  "quien": "celebra",
+  "texto": "¡Otra vez! Suavecito."
+ },
+ {
+  "id": "otra-vez-fuerte",
+  "quien": "celebra",
+  "texto": "¡Otra vez! Fuerte."
+ },
+ {
+  "id": "otra-vez-tuEmpiezas",
+  "quien": "celebra",
+  "texto": "¡Ahora tú empiezas!"
+ },
+ {
+  "id": "ay-lento-01",
+  "quien": "suave",
+  "texto": "Mira, más despacito."
+ },
+ {
+  "id": "coro-sube-01",
+  "quien": "maestro",
+  "texto": "Escucha: sube o baja."
+ },
+ {
+  "id": "coro-igual-01",
+  "quien": "maestro",
+  "texto": "Escucha: igual o diferente."
+ },
+ {
+  "id": "coro-encontrar-01",
+  "quien": "suave",
+  "texto": "Canta conmigo y búscala en el piano."
+ },
+ {
+  "id": "salon-pregunta-01",
+  "quien": "maestro",
+  "texto": "Yo pregunto y tú respondes."
+ },
+ {
+  "id": "teatro-todo-01",
+  "quien": "narrador",
+  "texto": "Primero, toda la canción."
+ },
+ {
+  "id": "rincon-casa-panaderia",
+  "quien": "maestro",
+  "texto": "Amasamos al ritmo: repite mis palmadas."
+ },
+ {
+  "id": "rincon-casa-carpinteria",
+  "quien": "maestro",
+  "texto": "Un golpe de martillo en cada pulso."
+ },
+ {
+  "id": "rincon-casa-cuna",
+  "quien": "maestro",
+  "texto": "El bebé duerme. Toca suavecito."
+ },
+ {
+  "id": "rincon-casa-cuco",
+  "quien": "maestro",
+  "texto": "Cuenta los cucús y tócalos."
+ },
+ {
+  "id": "rincon-casa-gallo",
+  "quien": "maestro",
+  "texto": "Kikirikí: escucha si sube o baja."
+ },
+ {
+  "id": "rincon-casa-abuela",
+  "quien": "maestro",
+  "texto": "Te canto mi canción. Repítela."
+ },
+ {
+  "id": "rincon-casa-herreria",
+  "quien": "maestro",
+  "texto": "Repite los golpes del yunque."
+ },
+ {
+  "id": "rincon-casa-telar",
+  "quien": "maestro",
+  "texto": "Toca y mi telar teje tu música."
+ },
+ {
+  "id": "rincon-casa-lira",
+  "quien": "maestro",
+  "texto": "Toco una nota. Búscala en el piano."
+ }
+]

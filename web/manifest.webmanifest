@@ -1,0 +1,30 @@
+{
+  "name": "Mi Piano 3",
+  "short_name": "Mi Piano",
+  "lang": "es-CO",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#1c1030",
+  "theme_color": "#1c1030",
+  "icons": [
+    {
+      "src": "icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icono-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

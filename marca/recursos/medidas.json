@@ -1,0 +1,122 @@
+{
+ "bach": [
+  38,
+  66
+ ],
+ "bach-feliz": [
+  40,
+  48
+ ],
+ "bach-sonrie": [
+  40,
+  48
+ ],
+ "bach-sorpresa": [
+  40,
+  48
+ ],
+ "tic": [
+  26,
+  36
+ ],
+ "tic-izq": [
+  26,
+  36
+ ],
+ "tic-canta": [
+  26,
+  36
+ ],
+ "tic-centro": [
+  26,
+  36
+ ],
+ "sarah": [
+  34,
+  36
+ ],
+ "sarah-quieta": [
+  34,
+  36
+ ],
+ "sarah-luz": [
+  34,
+  36
+ ],
+ "sarah-sienta": [
+  34,
+  36
+ ],
+ "david": [
+  34,
+  36
+ ],
+ "david-quieto": [
+  34,
+  36
+ ],
+ "david-honda": [
+  34,
+  36
+ ],
+ "david-sienta": [
+  34,
+  36
+ ],
+ "sanson": [
+  50,
+  26
+ ],
+ "sanson-lengua": [
+  50,
+  26
+ ],
+ "sanson-duerme": [
+  50,
+  26
+ ],
+ "estrella": [
+  17,
+  17
+ ],
+ "estrella-vacia": [
+  17,
+  17
+ ],
+ "papa": [
+  28,
+  48
+ ],
+ "mama": [
+  28,
+  48
+ ],
+ "nota-DO": [
+  21,
+  21
+ ],
+ "nota-RE": [
+  21,
+  21
+ ],
+ "nota-MI": [
+  21,
+  21
+ ],
+ "nota-FA": [
+  21,
+  21
+ ],
+ "nota-SOL": [
+  21,
+  21
+ ],
+ "nota-LA": [
+  21,
+  21
+ ],
+ "nota-SI": [
+  21,
+  21
+ ]
+}

@@ -1,0 +1,122 @@
+[
+ {
+  "id": "salon-dia-1",
+  "quien": "maestro",
+  "texto": "Hoy, un solo dedo y una nota: MI."
+ },
+ {
+  "id": "salon-dia-2",
+  "quien": "maestro",
+  "texto": "El silencio también es música: sh."
+ },
+ {
+  "id": "salon-dia-3",
+  "quien": "maestro",
+  "texto": "Taca: dos notas en un solo pulso."
+ },
+ {
+  "id": "salon-dia-4",
+  "quien": "maestro",
+  "texto": "Una nota nueva: SOL, con el dedo cinco."
+ },
+ {
+  "id": "salon-dia-5",
+  "quien": "maestro",
+  "texto": "Ahora los bloques viven en el pentagrama."
+ },
+ {
+  "id": "salon-dia-6",
+  "quien": "maestro",
+  "texto": "Una nota nueva: DO, con el dedo uno."
+ },
+ {
+  "id": "salon-dia-7",
+  "quien": "maestro",
+  "texto": "Taca con tres notas."
+ },
+ {
+  "id": "salon-dia-8",
+  "quien": "maestro",
+  "texto": "Nota nueva: RE, con el dedo dos."
+ },
+ {
+  "id": "salon-dia-9",
+  "quien": "maestro",
+  "texto": "La redonda dura cuatro pulsos: taaaaan."
+ },
+ {
+  "id": "salon-dia-10",
+  "quien": "maestro",
+  "texto": "Nota nueva: FA, con el dedo cuatro."
+ },
+ {
+  "id": "salon-dia-11",
+  "quien": "maestro",
+  "texto": "Cinco dedos, cinco notas."
+ },
+ {
+  "id": "salon-dia-12",
+  "quien": "maestro",
+  "texto": "Nota nueva: LA; la mano se estira."
+ },
+ {
+  "id": "salon-dia-13",
+  "quien": "maestro",
+  "texto": "Nota nueva: SI; ya están las siete."
+ },
+ {
+  "id": "salon-dia-14",
+  "quien": "maestro",
+  "texto": "Hoy repasamos todo, a tempo."
+ },
+ {
+  "id": "anuncio-batalla",
+  "quien": "celebra",
+  "texto": "El pastorcito te reta: duelo de eco."
+ },
+ {
+  "id": "anuncio-partituras",
+  "quien": "maestro",
+  "texto": "Partitura al azar: lee y toca."
+ },
+ {
+  "id": "anuncio-caen",
+  "quien": "maestro",
+  "texto": "Toca cada nota cuando llegue a la línea."
+ },
+ {
+  "id": "anuncio-concierto",
+  "quien": "celebra",
+  "texto": "Tu familia vino a escucharte."
+ },
+ {
+  "id": "anuncio-kiosco",
+  "quien": "maestro",
+  "texto": "La banda toca; tú llevas el pulso."
+ },
+ {
+  "id": "anuncio-museo",
+  "quien": "narrador",
+  "texto": "Bienvenidos al museo de Belén."
+ },
+ {
+  "id": "anuncio-tienda",
+  "quien": "maestro",
+  "texto": "El luthier tiene cosas lindas."
+ },
+ {
+  "id": "anuncio-vestidor",
+  "quien": "maestro",
+  "texto": "Escoge tu traje."
+ },
+ {
+  "id": "concierto-bravo",
+  "quien": "celebra",
+  "texto": "¡Bravo! ¡Qué concierto!"
+ },
+ {
+  "id": "secreto-nota",
+  "quien": "celebra",
+  "texto": "¡Una nota dorada!"
+ }
+]

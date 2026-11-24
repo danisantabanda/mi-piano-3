@@ -1,0 +1,207 @@
+[
+ {
+  "id": "bach-carta-01",
+  "quien": "narrador",
+  "texto": "Te espero en Belén: allí empieza el viaje."
+ },
+ {
+  "id": "bach-carta-tic-01",
+  "quien": "narrador",
+  "texto": "Te mando a Tic: él lleva el pulso."
+ },
+ {
+  "id": "bach-traje-01",
+  "quien": "celebra",
+  "texto": "¡Este es tu traje de músico viajero!"
+ },
+ {
+  "id": "bach-puerta-01",
+  "quien": "maestro",
+  "texto": "Toca una tecla y se abre la puerta."
+ },
+ {
+  "id": "bach-bienvenida-01",
+  "quien": "celebra",
+  "texto": "¡Bienvenida a Belén!"
+ },
+ {
+  "id": "bach-bienvenida-02",
+  "quien": "celebra",
+  "texto": "¡Bienvenido a Belén!"
+ },
+ {
+  "id": "bach-patio-01",
+  "quien": "suave",
+  "texto": "Respira con Tic: entra el aire, sale el aire."
+ },
+ {
+  "id": "bach-patio-libre-01",
+  "quien": "maestro",
+  "texto": "Ahora toca lo que quieras."
+ },
+ {
+  "id": "bach-coro-01",
+  "quien": "maestro",
+  "texto": "Tic canta primero; después cantas tú."
+ },
+ {
+  "id": "bach-salon-01",
+  "quien": "maestro",
+  "texto": "La negra dice tan; la blanca dice taaan."
+ },
+ {
+  "id": "bach-salon-02",
+  "quien": "maestro",
+  "texto": "Ahora la blanca va primero."
+ },
+ {
+  "id": "bach-espera-01",
+  "quien": "suave",
+  "texto": "Yo te espero: toca cuando estés listo."
+ },
+ {
+  "id": "bach-ritmo-01",
+  "quien": "suave",
+  "texto": "Ahora a tu ritmo: la blanca dura más."
+ },
+ {
+  "id": "bach-tempo-01",
+  "quien": "maestro",
+  "texto": "Ahora con el pulso de Tic: uno, dos, tres, cuatro."
+ },
+ {
+  "id": "bach-teatro-jingle",
+  "quien": "celebra",
+  "texto": "Hoy tocamos Jingle Bells, pedazo por pedazo."
+ },
+ {
+  "id": "bach-teatro-noche",
+  "quien": "maestro",
+  "texto": "Hoy tocamos Noche de paz."
+ },
+ {
+  "id": "bach-teatro-peces",
+  "quien": "celebra",
+  "texto": "Hoy tocamos Los peces en el río."
+ },
+ {
+  "id": "bach-teatro-campana",
+  "quien": "celebra",
+  "texto": "Hoy tocamos Campana sobre campana."
+ },
+ {
+  "id": "bach-teatro-venid",
+  "quien": "narrador",
+  "texto": "Hoy tocamos Venid, fieles todos."
+ },
+ {
+  "id": "bach-pads-01",
+  "quien": "maestro",
+  "texto": "Primero el ritmo, en los tambores."
+ },
+ {
+  "id": "bach-banda-01",
+  "quien": "celebra",
+  "texto": "Ahora todo lo que sabes, con la banda."
+ },
+ {
+  "id": "bach-taller-01",
+  "quien": "maestro",
+  "texto": "Inventa tu música; la banda te acompaña."
+ },
+ {
+  "id": "bach-taller-escucha-01",
+  "quien": "celebra",
+  "texto": "¡Escucha lo que inventaste!"
+ },
+ {
+  "id": "rx-bien-01",
+  "quien": "celebra",
+  "texto": "¡Eso es!"
+ },
+ {
+  "id": "rx-bien-02",
+  "quien": "celebra",
+  "texto": "¡Qué belleza!"
+ },
+ {
+  "id": "rx-bien-03",
+  "quien": "celebra",
+  "texto": "¡Muy bien tocado!"
+ },
+ {
+  "id": "rx-fantastico-01",
+  "quien": "celebra",
+  "texto": "¡Fantástico, sin un error!"
+ },
+ {
+  "id": "rx-dominado-01",
+  "quien": "celebra",
+  "texto": "¡Ese pedazo ya es tuyo!"
+ },
+ {
+  "id": "ay-demuestra-01",
+  "quien": "suave",
+  "texto": "Mira, Tic te lo muestra."
+ },
+ {
+  "id": "ay-juntos-01",
+  "quien": "suave",
+  "texto": "Ahora tocamos juntos."
+ },
+ {
+  "id": "ay-calma-01",
+  "quien": "suave",
+  "texto": "Una nota a la vez."
+ },
+ {
+  "id": "bach-organo-01",
+  "quien": "celebra",
+  "texto": "¡Tu órgano suena completo!"
+ },
+ {
+  "id": "bach-semana-01",
+  "quien": "maestro",
+  "texto": "Una nota más en tu semana."
+ },
+ {
+  "id": "bach-despierta-01",
+  "quien": "narrador",
+  "texto": "La música de Belén despertó un poco más."
+ },
+ {
+  "id": "bach-belen-01",
+  "quien": "narrador",
+  "texto": "Aquí, en Belén, nació Jesús."
+ },
+ {
+  "id": "bach-duelo-01",
+  "quien": "maestro",
+  "texto": "Él toca la flauta; tú respondes en el piano."
+ },
+ {
+  "id": "bach-duelo-corazon-01",
+  "quien": "suave",
+  "texto": "Escucha otra vez, con calma."
+ },
+ {
+  "id": "bach-duelo-gana-01",
+  "quien": "celebra",
+  "texto": "¡Ganaste la insignia de la estrella!"
+ },
+ {
+  "id": "bach-llave-01",
+  "quien": "narrador",
+  "texto": "Esta llave abre la ciudad de enero."
+ },
+ {
+  "id": "bach-maelzel-01",
+  "quien": "maestro",
+  "texto": "En enero nos espera Maelzel, el del metrónomo."
+ },
+ {
+  "id": "bach-duelo-pierde-01",
+  "quien": "suave",
+  "texto": "Casi; mañana lo intentamos otra vez."
+ }
+]

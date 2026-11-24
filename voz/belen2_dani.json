@@ -1,0 +1,162 @@
+[
+ {
+  "id": "bach-titulo-01",
+  "quien": "narrador",
+  "texto": "Bienvenidos a Mi Piano: el viaje de Bach."
+ },
+ {
+  "id": "bach-frase-01",
+  "quien": "narrador",
+  "texto": "Cada nota es un paso del camino."
+ },
+ {
+  "id": "bach-recorrido-01",
+  "quien": "maestro",
+  "texto": "Estos son los lugares de Belén."
+ },
+ {
+  "id": "lugar-patio",
+  "quien": "maestro",
+  "texto": "El Patio."
+ },
+ {
+  "id": "lugar-coro",
+  "quien": "maestro",
+  "texto": "El Coro."
+ },
+ {
+  "id": "lugar-salon",
+  "quien": "maestro",
+  "texto": "El Salón de Bach."
+ },
+ {
+  "id": "lugar-teatro",
+  "quien": "maestro",
+  "texto": "El Teatro."
+ },
+ {
+  "id": "lugar-taller",
+  "quien": "maestro",
+  "texto": "El Taller."
+ },
+ {
+  "id": "lugar-conservatorio",
+  "quien": "maestro",
+  "texto": "El Conservatorio."
+ },
+ {
+  "id": "anuncio-patio",
+  "quien": "maestro",
+  "texto": "Al Patio: respiramos y tocamos libre."
+ },
+ {
+  "id": "anuncio-coro",
+  "quien": "maestro",
+  "texto": "Al Coro: Tic canta y tú respondes."
+ },
+ {
+  "id": "anuncio-salon",
+  "quien": "maestro",
+  "texto": "Al Salón: algo nuevo con Bach."
+ },
+ {
+  "id": "anuncio-teatro",
+  "quien": "celebra",
+  "texto": "Al Teatro: un villancico, pedazo por pedazo."
+ },
+ {
+  "id": "anuncio-taller",
+  "quien": "maestro",
+  "texto": "Al Taller: hoy inventas tú."
+ },
+ {
+  "id": "anuncio-conservatorio",
+  "quien": "maestro",
+  "texto": "Al Conservatorio: duelo de eco."
+ },
+ {
+  "id": "nota-do",
+  "quien": "maestro",
+  "texto": "Esta es DO."
+ },
+ {
+  "id": "nota-re",
+  "quien": "maestro",
+  "texto": "Esta es RE."
+ },
+ {
+  "id": "nota-mi",
+  "quien": "maestro",
+  "texto": "Esta es MI."
+ },
+ {
+  "id": "nota-fa",
+  "quien": "maestro",
+  "texto": "Esta es FA."
+ },
+ {
+  "id": "nota-sol",
+  "quien": "maestro",
+  "texto": "Esta es SOL."
+ },
+ {
+  "id": "nota-la",
+  "quien": "maestro",
+  "texto": "Esta es LA."
+ },
+ {
+  "id": "nota-si",
+  "quien": "maestro",
+  "texto": "Esta es SI."
+ },
+ {
+  "id": "nota-sol-sost",
+  "quien": "maestro",
+  "texto": "Esta es SOL sostenido: la negra de al lado."
+ },
+ {
+  "id": "nota-esa-01",
+  "quien": "celebra",
+  "texto": "¡Esa es!"
+ },
+ {
+  "id": "cuenta-1",
+  "quien": "maestro",
+  "texto": "Uno."
+ },
+ {
+  "id": "cuenta-2",
+  "quien": "maestro",
+  "texto": "Dos."
+ },
+ {
+  "id": "cuenta-3",
+  "quien": "maestro",
+  "texto": "Tres."
+ },
+ {
+  "id": "cuenta-4",
+  "quien": "maestro",
+  "texto": "Cuatro."
+ },
+ {
+  "id": "repaso-negra",
+  "quien": "maestro",
+  "texto": "La negra dice tan."
+ },
+ {
+  "id": "repaso-blanca",
+  "quien": "maestro",
+  "texto": "La blanca dice taaan."
+ },
+ {
+  "id": "repaso-pulso",
+  "quien": "maestro",
+  "texto": "El pulso late como un corazón."
+ },
+ {
+  "id": "bach-tempo-02",
+  "quien": "maestro",
+  "texto": "Ahora con el pulso de Tic."
+ }
+]

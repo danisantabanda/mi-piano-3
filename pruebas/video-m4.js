@@ -1,0 +1,30 @@
+// Video M4 con sonido (MediaRecorder dentro de la página): progresión día 1–2, Teatro, notas que caen, concierto, mapa, Belén, museo y tienda.
+const { chromium } = require(require('child_process').execSync('npm root -g').toString().trim() + '/playwright');
+const path = require('path'), fs = require('fs'), { execSync } = require('child_process');
+const espera = ms => new Promise(r => setTimeout(r, ms)), TMP = '/tmp/claude-0/video-m4', OUT = path.join(__dirname, '..', 'capturas', 'm4-gran-prueba.mp4');
+(async () => {
+  fs.rmSync(TMP, { recursive: true, force: true }); fs.mkdirSync(TMP, { recursive: true });
+  const b = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
+  const cx = await b.newContext({ viewport: { width: 1280, height: 800 }, recordVideo: { dir: TMP, size: { width: 1280, height: 800 } } });
+  const pg = await cx.newPage(); const T0 = Date.now(); const errs = []; pg.on('pageerror', e => errs.push(e.message));
+  await pg.goto('file://' + path.join(__dirname, '..', 'MI-PIANO-3-M3.html')); await pg.waitForFunction(() => window.__mp3 && window.__mp3.listo, null, { timeout: 60000 });
+  const ev = (f, x) => pg.evaluate(f, x);
+  await ev(() => { localStorage.clear(); __mp3.fecha('2026-12-09'); __mp3.perfil('sarah'); SON5.iniciar(); const m = m2_(); m.primerDia = true; m.corcheas = 140; m.notasVistas = [64, 67, 60, 62, 65]; m.diaForzado = 0; }); await espera(3000);
+  const Ta = await ev(() => { const K = KitSonido, c = K.contexto(), d = c.createMediaStreamDestination(); K._master.lim.connect(d); window.__rec = new MediaRecorder(d.stream, { mimeType: 'audio/webm;codecs=opus' }); window.__tr = []; __rec.ondataavailable = e => __tr.push(e.data); __rec.start(); return Date.now(); });
+  const ini = (Date.now() - T0) / 1000;
+  await ev(() => { __mp3.carta(); }); await espera(6500);
+  const salon = async (d, paso, ms) => { await ev(([d, paso]) => { __mp3.pararNino(); m2_().diaForzado = d; __mp3.paradaDirecta('salon'); ESC.anuncio.dur = 0; setTimeout(() => { ESC.irPaso(paso); __mp3.nino('bueno', 'midi', { errorP: .04 }); }, 200); }, [d, paso]); await espera(ms); };
+  await salon(0, 4, 11000); await salon(1, 4, 8500);
+  await ev(() => { __mp3.pararNino(); m2_().diaForzado = 0; diaHoy5().cancion = 'jingle'; __mp3.paradaDirecta('teatro'); ESC.anuncio.dur = 0; setTimeout(() => { const i = ESC.pasos.findIndex(p => p.o && p.o.clave === 'jingle-0'); ESC.irPaso(Math.max(0, i)); __mp3.nino('bueno', 'midi', { errorP: 0 }); }, 200); }); await espera(10000);
+  await ev(() => { __mp3.pararNino(); m2_().diaForzado = 4; ESCENA_CAEN5.volver = { lugar: LUGARES5.belen }; irA(ESCENA_CAEN5, { tipo: 'iris' }); setTimeout(() => __mp3.nino('bueno', 'midi', { errorP: .05 }), 600); }); await espera(10000);
+  await ev(() => { __mp3.pararNino(); CONCIERTO5.cancion = 'jingle'; abrirModo5('concierto'); setTimeout(() => { ESC.anuncio.dur = 0; __mp3.nino('bueno', 'midi', { errorP: 0 }); }, 900); }); await espera(10000);
+  await ev(() => { __mp3.pararNino(); GUARDA.perfil().lugar = 'belen'; __mp3.ir('mapa'); ESCENA_MAPA.entrar(); }); await espera(800); await ev(() => { const p = ESCENA_MAPA.pantallaDe('natal'); ESCENA_MAPA.tocar(p[0], p[1]); }); await espera(5500);
+  await ev(() => { const B = LUGARES5.belen; B.auto = false; __mp3.ir('belen'); __mp3.revelarTodo(); __mp3.caminar(17, 22); }); await espera(5000);
+  await ev(() => { ESCENA_MUSEO5.volver = { lugar: LUGARES5.belen }; irA(ESCENA_MUSEO5, { tipo: 'iris' }); }); await espera(1200); await ev(() => ESC.tocar(300, 260)); await espera(3500);
+  await ev(() => { comprar5(TIENDA5.find(x => x.id === 'barroco')); MENU5.abrir('tienda'); }); await espera(2500); await ev(() => MENU5.abrir('vestidor')); await espera(2500);
+  const b64 = await ev(() => new Promise(ok => { __rec.onstop = () => { const r = new FileReader(); r.onload = () => ok(r.result.split(',')[1]); r.readAsDataURL(new Blob(__tr, { type: 'audio/webm' })); }; __rec.stop(); }));
+  const fin = (Date.now() - T0) / 1000; fs.writeFileSync(path.join(TMP, 'audio.webm'), Buffer.from(b64, 'base64')); await cx.close(); await b.close();
+  const v = path.join(TMP, fs.readdirSync(TMP).find(f => f.endsWith('.webm') && f !== 'audio.webm')), off = (Ta - T0) / 1000 - ini;
+  execSync(`ffmpeg -y -loglevel error -ss ${ini.toFixed(2)} -i "${v}" -t ${(fin - ini).toFixed(2)} -itsoffset ${off.toFixed(2)} -i "${path.join(TMP, 'audio.webm')}" -map 0:v -map 1:a -vf scale=960:600,fps=30 -c:v libx264 -preset medium -threads 2 -crf 26 -pix_fmt yuv420p -af loudnorm=I=-18:TP=-1.5 -c:a aac -b:a 128k -shortest -movflags +faststart "${OUT}"`);
+  console.log(JSON.stringify({ segundos: +(+execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${OUT}"`).toString()).toFixed(1), mb: +(fs.statSync(OUT).size / 1e6).toFixed(2), errores: errs }));
+})();
