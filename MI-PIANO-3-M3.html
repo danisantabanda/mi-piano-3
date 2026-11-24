@@ -4454,7 +4454,7 @@ function pasoLectura5(notasIn, modo, o = {}) {
     if (S.eval && typeof contarRepeticion5 === 'function') contarRepeticion5(notas.map(x => x.n + ':' + x.d).join(' ') + '|' + bpm + '|' + (o.var ? o.var.id : '') + (S.pads ? '|p' : ''));
     if (S.intento > 1 && modo !== 'escucha') { S.visto = notas.map(() => true); reproducir(P, 1, false, () => arrancar(P)); return; }
     S.visto = notas.map(() => modo !== 'escucha' && !(o.introCanto && S.intento === 1));
-    if (S.intento === 1) { const k = S.pads ? 'pads' : o.cancion || (o.base && o.acordes && notas.length > 12) ? 'banda' : modo; const g = { espera: 'bach-espera', ritmo: 'bach-ritmo', tempo: 'bach-tempo', pads: 'bach-pads', banda: 'bach-banda' }[k]; if (g && !o.corto) vozPrimeras5('esc-' + k + '-' + hoy5(), 1, g, { forzar: true }); }
+    if (S.intento === 1 && modo !== 'escucha') { const k = S.pads ? 'pads' : o.cancion || (o.base && o.acordes && notas.length > 12) ? 'banda' : modo; const g = { espera: 'bach-espera', ritmo: 'bach-ritmo', tempo: 'bach-tempo', pads: 'bach-pads', banda: 'bach-banda' }[k]; if (g && !o.corto) vozPrimeras5('esc-' + k + '-' + hoy5(), 1, g, { forzar: true }); }
     if (modo === 'escucha') reproducir(P, o.veces || 2, false, () => { S.listo = true; });
     else if (o.introCanto && S.intento === 1) reproducir(P, o.introCanto, true, () => arrancar(P));
     else arrancar(P);
@@ -4966,6 +4966,7 @@ const SIM5 = {
     }
     for (let vuelta = 0; vuelta < 6; vuelta++) {   // a velocidad alta, varias notas por cuadro
     const o = ESC.objetivo ? ESC.objetivo() : null; if (!o) { this.plan = null; return; }
+    if (this.plan && this.plan.id === o.id && this.plan.hecho && t > this.plan.t + 3) this.plan = null;   // M8: si el objetivo sigue ahí (el toque se lo comió una tarjeta o falló), vuelve a intentar como un niño
     if (!this.plan || this.plan.id !== o.id) {
       const err = !o.libre && R() < this.errorP;
       let tt = o.reaccion ? o.t + .45 + R() * .45 : o.t + (R() + R() + R() - 1.5) * .045;
@@ -6511,7 +6512,7 @@ function abiertoLugar5(id) {
 }
 const INFO_LUGAR5 = {
   salon: () => { const n = misionesHechas5(); if (n >= 14) return { lineas: ['¡Terminaste las catorce misiones de Belén!', 'Bach te espera en el pesebre para el gran concierto.'], boton: 'Repasar', jugar: () => empezarMision5() };
-    const P = planDia5(n), hecha = diaLog5().completo; return { retrato: () => sprBachElegante(), lineas: ['Misión ' + (n + 1) + ': ' + P.nuevo + '.', hecha ? 'Hoy ya hiciste una misión. ¿Otra más? Pídele permiso a papá.' : 'Patio, Coro, Salón, Teatro y Taller' + (MISIONES5[n].duelo ? ', y el duelo de eco.' : '.')], boton: '¡Empezar!', jugar: () => empezarMision5() }; },
+    const P = planDia5(n), hecha = diaLog5().completo; return { retrato: () => sprBachElegante(), lineas: ['Misión ' + (n + 1) + ': ' + P.nuevo + '.', hecha ? '¡Ya hiciste la misión de hoy! Puedes seguir con la siguiente o explorar Belén.' : 'Patio, Coro, Salón, Teatro y Taller' + (MISIONES5[n].duelo ? ', y el duelo de eco.' : '.')], boton: '¡Empezar!', jugar: () => empezarMision5() }; },
   patio: () => ({ lineas: ['Respira con Tic y toca libre.', 'Cada nota sube como un farol.'], jugar: () => abrirModo5('patioL') }),
   coro: () => ({ lineas: ['Tic canta y tú le respondes.', 'Eco cantado, una y otra vez.'], jugar: () => abrirModo5('coroL') }),
   teatro: () => { const id = cancionSemana5(); return { lineas: ['La canción de esta semana:', VILLANCICOS5[id].titulo + '.'], jugar: () => abrirModo5('teatroL') }; },

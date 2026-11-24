@@ -357,7 +357,7 @@ function pasoLectura5(notasIn, modo, o = {}) {
     if (S.eval && typeof contarRepeticion5 === 'function') contarRepeticion5(notas.map(x => x.n + ':' + x.d).join(' ') + '|' + bpm + '|' + (o.var ? o.var.id : '') + (S.pads ? '|p' : ''));
     if (S.intento > 1 && modo !== 'escucha') { S.visto = notas.map(() => true); reproducir(P, 1, false, () => arrancar(P)); return; }
     S.visto = notas.map(() => modo !== 'escucha' && !(o.introCanto && S.intento === 1));
-    if (S.intento === 1) { const k = S.pads ? 'pads' : o.cancion || (o.base && o.acordes && notas.length > 12) ? 'banda' : modo; const g = { espera: 'bach-espera', ritmo: 'bach-ritmo', tempo: 'bach-tempo', pads: 'bach-pads', banda: 'bach-banda' }[k]; if (g && !o.corto) vozPrimeras5('esc-' + k + '-' + hoy5(), 1, g, { forzar: true }); }
+    if (S.intento === 1 && modo !== 'escucha') { const k = S.pads ? 'pads' : o.cancion || (o.base && o.acordes && notas.length > 12) ? 'banda' : modo; const g = { espera: 'bach-espera', ritmo: 'bach-ritmo', tempo: 'bach-tempo', pads: 'bach-pads', banda: 'bach-banda' }[k]; if (g && !o.corto) vozPrimeras5('esc-' + k + '-' + hoy5(), 1, g, { forzar: true }); }
     if (modo === 'escucha') reproducir(P, o.veces || 2, false, () => { S.listo = true; });
     else if (o.introCanto && S.intento === 1) reproducir(P, o.introCanto, true, () => arrancar(P));
     else arrancar(P);
@@ -869,6 +869,7 @@ const SIM5 = {
     }
     for (let vuelta = 0; vuelta < 6; vuelta++) {   // a velocidad alta, varias notas por cuadro
     const o = ESC.objetivo ? ESC.objetivo() : null; if (!o) { this.plan = null; return; }
+    if (this.plan && this.plan.id === o.id && this.plan.hecho && t > this.plan.t + 3) this.plan = null;   // M8: si el objetivo sigue ahí (el toque se lo comió una tarjeta o falló), vuelve a intentar como un niño
     if (!this.plan || this.plan.id !== o.id) {
       const err = !o.libre && R() < this.errorP;
       let tt = o.reaccion ? o.t + .45 + R() * .45 : o.t + (R() + R() + R() - 1.5) * .045;

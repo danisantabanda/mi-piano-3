@@ -50,7 +50,7 @@ function abiertoLugar5(id) {
 }
 const INFO_LUGAR5 = {
   salon: () => { const n = misionesHechas5(); if (n >= 14) return { lineas: ['¡Terminaste las catorce misiones de Belén!', 'Bach te espera en el pesebre para el gran concierto.'], boton: 'Repasar', jugar: () => empezarMision5() };
-    const P = planDia5(n), hecha = diaLog5().completo; return { retrato: () => sprBachElegante(), lineas: ['Misión ' + (n + 1) + ': ' + P.nuevo + '.', hecha ? 'Hoy ya hiciste una misión. ¿Otra más? Pídele permiso a papá.' : 'Patio, Coro, Salón, Teatro y Taller' + (MISIONES5[n].duelo ? ', y el duelo de eco.' : '.')], boton: '¡Empezar!', jugar: () => empezarMision5() }; },
+    const P = planDia5(n), hecha = diaLog5().completo; return { retrato: () => sprBachElegante(), lineas: ['Misión ' + (n + 1) + ': ' + P.nuevo + '.', hecha ? '¡Ya hiciste la misión de hoy! Puedes seguir con la siguiente o explorar Belén.' : 'Patio, Coro, Salón, Teatro y Taller' + (MISIONES5[n].duelo ? ', y el duelo de eco.' : '.')], boton: '¡Empezar!', jugar: () => empezarMision5() }; },
   patio: () => ({ lineas: ['Respira con Tic y toca libre.', 'Cada nota sube como un farol.'], jugar: () => abrirModo5('patioL') }),
   coro: () => ({ lineas: ['Tic canta y tú le respondes.', 'Eco cantado, una y otra vez.'], jugar: () => abrirModo5('coroL') }),
   teatro: () => { const id = cancionSemana5(); return { lineas: ['La canción de esta semana:', VILLANCICOS5[id].titulo + '.'], jugar: () => abrirModo5('teatroL') }; },
