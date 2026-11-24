@@ -81,10 +81,10 @@ function pulso5() {
       while (this.ult < n) { this.ult++; if (this.ult < 0) continue; const tb = this.tDe(this.ult), at = SON5.listo ? Math.max(KitSonido.ahora(), this.audio(tb)) : 0;
         const deja = this.sonar && (!this.puedeSonar || this.puedeSonar());   // M7c: el clic calla si el ejercicio no es de pulso o si el niño dejó de responder
         if (deja) SON5.ticEn(this.ult % this.compas === 0, at);
-        const c = this.cuentas.find(x => x.k === this.ult); if (c) SON5.cuenta(c.num, at, c.de); }
+        const c = this.cuentas.find(x => x.k === this.ult); if (c && !c.muda) SON5.cuenta(c.num, at, c.de); }
     },
     // la cuenta hablada («uno, dos, tres, cuatro») va pegada a los mismos pulsos
-    contar(desde, cuantos, de) { for (let i = 0; i < cuantos; i++) this.cuentas.push({ k: desde + i, num: i + 1, de }); },
+    contar(desde, cuantos, de, muda) { for (let i = 0; i < cuantos; i++) this.cuentas.push({ k: desde + i, num: i + 1, de, muda: !!muda }); },
   };
 }
 // ---------- dibujo común ----------
@@ -162,14 +162,14 @@ function dibujarPads5(ctx, P) {
 const PARADA5 = {};
 function crearParada5(id, construir) {
   const P = { id, dia: true, t: 0, fx: fx5(), pulso: pulso5(), pasos: [], k: 0, padGolpe: [], ticPos: [100, 330, 4] };
-  P.pulso.puedeSonar = () => { const S = P.paso; if (!S || P.fin || P.tarjeta) return false; if (S.libre) return true;
+  P.pulso.puedeSonar = () => { const S = P.paso; if (!S || P.fin) return false; if (P.tarjeta && !(P.finTempo != null && P.t - P.finTempo < 6)) return false;   /* M8: la tarjeta de estrellas entre rondas a tempo no apaga el clic */ if (S.libre) return true;
     if (S.tipo !== 'lectura') return false;                       // oído, encontrar, preguntas: sin clic
     if (S.estado === 'rep') return true;                           // Tic lo muestra con el pulso
     if (S.modo !== 'tempo') return false;                          // «espera» y «a tu ritmo»: sin clic
-    return performance.now() - ULTIMA_ENTRADA5 < 8000 || P.t - (S.tInicio || 0) < 6; };   // a tempo: si el niño no responde en 8 s, el clic se calla
+    return true; };   // M8: a tempo el clic no se apaga (ni entre rondas ni si el niño se queda quieto): es el reloj del momento
   P.reloj = () => P.t;
   P.entrar = () => {
-    P.t = 0; P.k = 0; P.tarjeta = null; P.fin = null; P.bono = 0; P.extra = 0; P.fx.lista.length = 0; P.salto = null; P.tropiezo = -9; P.ticCanta = 0;
+    P.t = 0; P.k = 0; P.finTempo = null; P.tarjeta = null; P.fin = null; P.bono = 0; P.extra = 0; P.fx.lista.length = 0; P.salto = null; P.tropiezo = -9; P.ticCanta = 0;
     TECLADO5.guia = null; TECLADO5.dedos = dedosDia5();
     const d = construir(P); P.cfg = d; P.fondo = fotoInterior5(FONDO_PARADA7[id] || d.fondo || ('b-' + id)); if (d.vidas) P.corazones = d.vidas; P.pasos = d.pasos.slice(); P.repaso = d.repaso || null; P.minimo = d.minimo || 0;
     P.pulso.anclar(.4, tempoDia5()); P.pulso.sonar = true;
@@ -382,9 +382,9 @@ function pasoLectura5(notasIn, modo, o = {}) {
   }
   function arrancar(P) {
     S.estado = 'toca'; S.desdeCur = P.t;
-    if (modo === 'tempo') { const nb = Math.ceil(P.pulso.beat(P.t) + .25); P.pulso.anclar(P.pulso.tDe(nb), bpm, CP); S.tInicio = P.pulso.t0 + (CP - AN) * B(); P.pulso.contar(0, CP - AN, CP); }   // cuenta de un compás; la anacrusa entra en su tiempo
+    if (modo === 'tempo') { const seguida = P.finTempo != null && P.t - P.finTempo < 6 && Math.abs(P.pulso.bpm - bpm) < 1; const nb = Math.ceil(P.pulso.beat(P.t) + .25); P.pulso.anclar(P.pulso.tDe(nb), bpm, CP); S.tInicio = P.pulso.t0 + (CP - AN) * B(); P.pulso.contar(0, CP - AN, CP, seguida); }   // M8: si la ronda anterior acaba de terminar al mismo tempo, la cuenta no se vuelve a decir (el clic sigue)   // cuenta de un compás; la anacrusa entra en su tiempo
   }
-  function terminar(P) { if (S.estado === 'fin') return; S.estado = 'fin'; S.prec = S.ok / Math.max(1, S.ok + S.mal); S.listo = true;
+  function terminar(P) { if (S.estado === 'fin') return; S.estado = 'fin'; if (modo === 'tempo') P.finTempo = P.t; S.prec = S.ok / Math.max(1, S.ok + S.mal); S.listo = true;
     // el informe guarda cómo tocó la canción (o el pedazo): el mejor intento del día
     if (o.clave && S.grab && S.grab.length && S.prec >= .8) { const m = m2_(); m.grab = m.grab || {}; const g = m.grab[o.clave]; if (!g || g.fecha !== hoy5() || g.prec <= S.prec) m.grab[o.clave] = { fecha: hoy5(), prec: +S.prec.toFixed(2), bpm, titulo: o.titulo || '', notas: S.grab.slice() }; } }
   function demostrar(P) { ticPita5('ayuda'); voz5('ay-demuestra'); S.demoHecho = true; S.apoyo = Math.max(S.apoyo, 1); reproducir(P, 1, false, () => { reiniciar(P); arrancar(P); }); }
@@ -699,7 +699,7 @@ function crearCarta5() {
   const fase = () => FASES[C.f][0];
   function siguienteFase() { C.f = Math.min(FASES.length - 1, C.f + 1); C.tf = C.t; const f = fase();
     if (f === 'lee') voz5('bach-carta', { hito: true });
-    if (f === 'tic') { C.pulso.anclar(C.t + .9, BPM5); C.pulso.sonar = true; ticPita5('hola'); setTimeout(() => voz5('bach-carta-tic', { hito: true }), 600 / VEL5); C.fx.estallar(LW5 / 2, 470, '#ffd046', 24); }
+    if (f === 'tic') { let bd = BPM5; try { if (GUARDA.perfil()) bd = tempoDia5(); } catch (e) { } C.pulso.anclar(C.t + .9, bd); C.pulso.sonar = true; ticPita5('hola'); setTimeout(() => voz5('bach-carta-tic', { hito: true }), 600 / VEL5); C.fx.estallar(LW5 / 2, 470, '#ffd046', 24); }
     if (f === 'traje') { try { Snd.desbloqueo(); } catch (e) { } setTimeout(() => voz5('bach-traje', { hito: true }), 1500 / VEL5); }
     if (f === 'puerta') { marca5('puerta'); voz5('bach-puerta', { hito: true }); } }
   C.dibujar = (ctx, dtR) => {

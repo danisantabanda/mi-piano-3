@@ -5,7 +5,12 @@
 const ACORDES5 = { C: [48, 52, 55], F: [53, 57, 60], G: [55, 59, 62], G7: [55, 59, 65], D: [50, 54, 57], Am: [57, 60, 64], Dm: [50, 53, 57], Em: [52, 55, 59], E: [52, 56, 59] };
 // muestras de la cuenta (voz de Bach) para programarlas con precisión de muestra: solo por http(s) (file:// no deja decodificarlas)
 const CUENTA5 = { bufs: {}, cargar() { if (this.pedido || !SON5.listo || !/^https?:$/.test(location.protocol) || !window.VOCES) return; this.pedido = true; const c = KitSonido.contexto();
-  [1, 2, 3, 4].forEach(k => { const id = window.VOCES['cuenta-' + k + 'b'] ? 'cuenta-' + k + 'b' : 'cuenta-' + k; if (!window.VOCES[id]) return; /* M5: «un… cuá» */ fetch('voces/' + id + '.ogg').then(r => r.arrayBuffer()).then(b => c.decodeAudioData(b)).then(buf => { this.bufs[k] = buf; }).catch(() => { }); }); } };
+  [1, 2, 3, 4].forEach(k => { const id = window.VOCES['cuenta-' + k + 'b'] ? 'cuenta-' + k + 'b' : 'cuenta-' + k; if (!window.VOCES[id]) return; /* M5: «un… cuá» */ fetch('voces/' + id + '.ogg').then(r => r.arrayBuffer()).then(b => c.decodeAudioData(b)).then(buf => { this.bufs[k] = buf; this.ataque[k] = ataqueVocal5(buf); }).catch(() => { }); }); } , ataque: {} };
+// M8: lo que el oído toma como «el golpe» de una sílaba es su vocal, no el comienzo del audio (centro perceptual).
+// Se mide en cada muestra: primer tramo de 10 ms que llega a −10 dB del pico. La cuenta se adelanta ese tanto.
+function ataqueVocal5(buf) { try { const d = buf.getChannelData(0), w = Math.max(1, Math.round(buf.sampleRate * .01)), e = []; let pk = 0;
+  for (let i = 0; i + w <= d.length; i += w) { let s = 0; for (let j = i; j < i + w; j++) s += d[j] * d[j]; const r = Math.sqrt(s / w); e.push(r); if (r > pk) pk = r; }
+  const k = e.findIndex(r => r >= pk * .316); return k > 0 ? Math.min(.25, k * .01) : 0; } catch (e) { return 0; } }
 let ULTIMA_FUENTE5 = 'pantalla', ULTIMA_ENTRADA5 = 0;
 const SON5 = {
   listo: false,
@@ -20,7 +25,8 @@ const SON5 = {
   ticEn(uno, at) { if (!this.listo) return; const K = KitSonido, t = Math.max(at || 0, K.ahora()); K.percusion.palitos(K.bus('efectos'), t, uno ? .7 : .45); if (uno) K.instrumentos.celesta(K.bus('efectos'), 91, t, .5, .32); },
   // «uno, dos, tres, cuatro»: muestras cortas de voz programadas en el pulso; sin muestras, un pitido de Tic que sube en el uno
   cuenta(num, at, de) { if (!this.listo) return; if (!CUENTA5.pedido) CUENTA5.cargar(); const K = KitSonido, t = Math.max(at || 0, K.ahora()), buf = CUENTA5.bufs[num];
-    if (buf && GUARDA.d.voces !== false) { const s = K.contexto().createBufferSource(); s.buffer = buf; const g = K.contexto().createGain(); g.gain.value = .9; s.connect(g); g.connect(K.bus('efectos').entrada); s.start(t); return; }
+    if (buf && GUARDA.d.voces !== false) { const s = K.contexto().createBufferSource(); s.buffer = buf; const g = K.contexto().createGain(); g.gain.value = .9; s.connect(g); g.connect(K.bus('efectos').entrada);
+      const ini = (at || 0) - (CUENTA5.ataque[num] || 0), ya = K.ahora(); if (ini >= ya) s.start(ini); else s.start(ya, Math.min(buf.duration - .01, ya - ini)); return; }
     K.instrumentos.flauta(K.bus('efectos'), num === 1 ? 91 : 86, t, .09, .35); },
   tic(uno) { if (!this.listo) return; const K = KitSonido, t = K.ahora() + .005; K.percusion.palitos(K.bus('efectos'), t, uno ? .7 : .45); if (uno) K.instrumentos.celesta(K.bus('efectos'), 91, t, .5, .32); },
   ticCanta(n, dur = .4) { if (!this.listo) return; const K = KitSonido, t = K.ahora() + .01; K.instrumentos.flauta(K.bus('efectos'), n + 12, t, dur, .55); K.instrumentos.celesta(K.bus('efectos'), n + 12, t, dur, .25); },
