@@ -21,7 +21,7 @@ const CELULAS5 = [['rep3', 'tan tan tan taaan', 4], ['dosLarga', 'tan tan taaan'
 function celula5(sil, notas) { const out = []; sil.split(' ').forEach((c, i) => CELDAS5[c].forEach(dd => out.push(dd < 0 ? { n: 0, d: -dd } : { n: notas[Math.min(i, notas.length - 1)], d: dd }))); if (out[0].n === 0) out[0] = { n: notas[0], d: out[0].d }; return out; }
 // una secuencia que se DESARROLLA: tipos intercalados (nota repetida, dos y una larga, silencio en medio, cambio de nota, pregunta–respuesta…)
 function secuencia5(d, cuantos = 8, semilla = 1) {
-  const P = planDia5(d), R = rngP5(semilla * 977 + d * 31), K = P.notas.map(pc => NOTA_PC5[pc]), nueva = K[K.length - 1], vieja = K.length > 1 ? K[K.length - 2] : K[0];
+  const P = planDia5(d), R = rngP5(semilla * 977 + d * 31), K = P.notas.map(pc => NOTA_PC5[pc]), nueva = K[K.length - 1], vieja = K.length > 1 ? K[K.length - 2] : K[0], inv = K.length === 1 ? invitada5(d) : null;
   const ok = s => s.split(' ').every(c => P.ritmos.includes(c));
   const cel = CELULAS5.filter(c => ok(c[1])), nuevoR = P.ritmos[P.ritmos.length - 1], conNuevo = cel.filter(c => c[1].split(' ').includes(nuevoR));
   const out = []; let ult = '';
@@ -29,13 +29,18 @@ function secuencia5(d, cuantos = 8, semilla = 1) {
     let c, tipo = i % 4;   // intercalar: 0 lo nuevo · 1 otra célula · 2 cambio de nota / octava · 3 pregunta–respuesta
     const pool = (tipo === 0 && conNuevo.length ? conNuevo : cel).filter(x => x[0] !== ult); c = pool[Math.floor(R() * pool.length)] || cel[0]; ult = c[0];
     const n = tipo === 0 ? nueva : K[Math.floor(R() * K.length)];
-    if (tipo === 2) { if (K.length > 1) { const a = celula5(c[1], [vieja]), b = celula5(c[1], [nueva]); out.push({ id: c[0] + '-cambio', notas: a.concat(b), compas: c[2] }); continue; }
+    if (tipo === 2) { if (inv) { const a = celula5(c[1], [K[0]]), b = celula5(c[1], [inv]); out.push({ id: c[0] + '-visita', notas: a.concat(b), compas: c[2], invitada: inv }); continue; }   // M8: con una sola nota, «una nota de visita» (la próxima del camino)
+      if (K.length > 1) { const a = celula5(c[1], [vieja]), b = celula5(c[1], [nueva]); out.push({ id: c[0] + '-cambio', notas: a.concat(b), compas: c[2] }); continue; }
       out.push({ id: c[0] + '-octava', notas: celula5(c[1], [n + 12 <= 83 ? n + 12 : n]), compas: c[2], arriba: true }); continue; }
     if (tipo === 3) { const r2 = cel.filter(x => x[2] === c[2] && x[0] !== c[0]); const resp = r2.length ? r2[Math.floor(R() * r2.length)] : c; out.push({ id: c[0] + '-pr', pregunta: celula5(c[1], [n]), notas: celula5(resp[1], [K.length > 1 ? K[(K.indexOf(n) + 1) % K.length] : n]), compas: c[2] }); continue; }
     out.push({ id: c[0], notas: celula5(c[1], [n]), compas: c[2] });
   }
   return out;
 }
+// M8: la próxima nota del camino visita los días de una sola nota (para que no sea solo «mi, mi, mi»)
+function invitada5(d) { const K0 = planDia5(d).notas; for (let k = d + 1; k < 20; k++) { const n = planDia5(k).notas.find(pc => !K0.includes(pc)); if (n != null) return NOTA_PC5[n]; } return null; }
+function pasoVisita5(item, modo) { const s = pasoLectura5(item.notas, modo, { compas: item.compas, titulo: modo === 'espera' ? 'Nota de visita: ' + NOMBRE_NOTA5(item.invitada) : '…y ahora con el pulso' }), ini = s.iniciar;
+  s.iniciar = P => { if (s.intento === 0) { vistas5(item.notas); TECLADO5.dedos = Object.assign({}, TECLADO5.dedos || {}, DEDO5[item.invitada] ? { [item.invitada]: DEDO5[item.invitada] } : {}); pista5(item.invitada, 3); if (modo === 'espera') avisoOtraVez5(P, '¡Llegó de visita ' + NOMBRE_NOTA5(item.invitada) + '!', 'visita-' + NOMBRE_NOTA5(item.invitada).toLowerCase()); } ini(P); }; return s; }
 const VARIAS5 = [{ id: 'rapido', txt: '¡Otra vez! Un poquito más rápido' }, { id: 'banda', txt: '¡Otra vez! Ahora te acompaña la banda' }, { id: 'octava', txt: '¡Otra vez! Ahora arriba' }, { id: 'suave', txt: '¡Otra vez! Suavecito' }, { id: 'fuerte', txt: '¡Otra vez! Fuerte' }, { id: 'tuEmpiezas', txt: '¡Ahora tú empiezas y Tic responde!' }];
 // el mismo ítem, cambiando UNA cosa (y anunciándolo)
 function pasoVariado5(item, vi, extra = {}) {
@@ -97,12 +102,22 @@ function definirParadas5() {
   crearParada5('patio', () => ({ pasos: [pasoPatio5(60)], estrellas: P => P.ganadasPatio || 0, corcheas: P => P.ganadasPatio || 0 }));
   // CORO = oído y voz
   crearParada5('coro', () => { const d = diaPlan5(), Q = secuencia5(d, 4, 5), K = conocidas5();
+    if (K.length === 1) { const E = secuencia5(d, 8, 11).filter(q => !q.pregunta && !q.invitada);   // M8: con una nota, cantar MI y eco de ritmos; «¿sube o baja?» llega con la segunda nota
+      const eco = i => pasoLectura5((E[i % E.length] || Q[1]).notas, 'ritmo', { introCanto: 2, corto: true, compas: 4 });
+      return { pasos: [eco(0), pasoEncontrar5(), pasoOido5('igual'), eco(1), pasoVariado5(Q[1], 2, { corto: true }), eco(2)], repaso: i => [pasoOido5('igual'), eco(3 + i)][i % 2], minimo: 100, decor: (P, ctx) => coroDecor5(P, ctx) }; }
     return { pasos: [pasoLectura5(Q[1].notas, 'ritmo', { introCanto: 2, corto: true, compas: Q[1].compas }), pasoOido5('sube'), pasoEncontrar5(), pasoOido5('igual'), pasoVariado5(Q[1], 2, { corto: true }), pasoOido5('sube')],
       repaso: i => [pasoOido5('igual'), pasoEncontrar5(), pasoOido5('sube')][i % 3], minimo: 100, decor: (P, ctx) => coroDecor5(P, ctx) }; });
   // SALÓN DE BACH = lo nuevo: Bach presenta, tú lo pruebas (escalera corta), Bach pregunta y tú respondes, variaciones, lectura
   crearParada5('salon', P => { P.ticPos = [100, 300, 4];
     const pl = plan5(), d = diaPlan5(), Q = secuencia5(d, 10, 3), base = Q[0], pasos = [pasoDialogo5('bach', pl.dice, 'salon-dia-' + pl.dia)];
     const pregunta = (q) => { const s = pasoLectura5(q.pregunta, 'escucha', { veces: 1, compas: q.compas, titulo: 'Bach pregunta…' }), ini = s.iniciar; s.iniciar = P => { if (s.intento === 0) voz5('salon-pregunta', { forzar: true }); ini(P); }; return s; };
+    if (conocidas5().length === 1) {   // M8: días de una sola nota: 5–6 rondas, cada dos cambia algo grande, y una nota de visita
+      const vis = Q.find(q => q.invitada), pr = Q.find(q => q.pregunta), otra = Q.find(q => !q.pregunta && !q.invitada && q !== base) || base;
+      pasos.push(pasoLectura5(base.notas, 'escucha', { veces: 1, compas: base.compas }), pasoLectura5(base.notas, 'espera', { compas: base.compas }), pasoLectura5(base.notas, 'tempo', { clave: 'ritmo-dia-' + pl.dia, compas: base.compas }), pasoVariado5(base, 1));
+      if (vis) pasos.push(pasoVisita5(vis, 'espera'), pasoVisita5(vis, 'tempo'));
+      if (pr) pasos.push(pregunta(pr), pasoLectura5(pr.notas, 'tempo', { compas: pr.compas, titulo: '…y tú respondes' }));
+      pasos.push(pasoVariado5(otra, 5));
+      return { decor: (P, ctx) => { const x = 1218, y = 592 + Math.sin(RELOJ * 2) * 1.5; sombra(ctx, x, y, 34, .3); dibujarBachParada7(ctx, x, y, 3); }, pasos, minimo: 0 }; }
     pasos.push(pasoLectura5(base.notas, 'escucha', { veces: 1, compas: base.compas }), pasoLectura5(base.notas, 'espera', { compas: base.compas }), pasoLectura5(base.notas, 'tempo', { clave: 'ritmo-dia-' + pl.dia, compas: base.compas }), pasoVariado5(base, 0));
     let vi = 1; Q.slice(1, 6).forEach(q => { if (q.pregunta) { pasos.push(pregunta(q), pasoLectura5(q.notas, 'tempo', { compas: q.compas, titulo: '…y tú respondes' })); }
       else { pasos.push(pasoLectura5(q.notas, 'tempo', { compas: q.compas })); if (q.id.indexOf('-') < 0) pasos.push(pasoVariado5(q, vi++)); } });
@@ -111,8 +126,12 @@ function definirParadas5() {
   // TEATRO = actuar la canción de la semana: todo (escuchar con el público) → por partes → todo con la banda → ¡otra vez, más rápido!
   crearParada5('teatro', P => { const cfg = teatroDelDia5(P), id = P.cancion, V = VILLANCICOS5[id], ver = versionDe5(id), todas = [], ac = []; ver.forEach(k => { todas.push(...V.pedazos[k].notas); ac.push(...V.pedazos[k].ac); });
     const todo0 = pasoLectura5(todas, 'escucha', { veces: 1, compas: V.compas, bpm: V.bpm, anac: V.pedazos[ver[0]].anac || 0, titulo: V.titulo + ' · toda (escucha)', base: true, acordes: ac }), i0 = todo0.iniciar; todo0.iniciar = P => { if (todo0.intento === 0) voz5('teatro-todo', { forzar: true }); i0(P); };
-    const pasos = [todo0].concat(cfg.pasos);
-    const ult = cfg.pasos[cfg.pasos.length - 1]; if (ult && ult.o && ult.o.base && ult.modo === 'tempo') { const o2 = Object.assign({}, ult.o, { bpm: Math.min(V.bpm + 6, tempoDia5() + 6), sinTope: true, var: VARIAS5[0], titulo: V.titulo + ' · ¡otra vez, más rápido!' }); delete o2.clave; pasos.push(pasoLectura5(ult.notas, 'tempo', o2)); }
+    let pasos = [todo0].concat(cfg.pasos);
+    if (conocidas5().length === 1) {   // M8: días de una sola nota: escuchar toda, el ritmo del primer pedazo en los tambores y tocarlo en MI con la banda
+      const k0 = ver[0], pz = V.pedazos[k0], o = { compas: V.compas, bpm: V.bpm, anac: pz.anac || 0, titulo: V.titulo + ' · 1' }, MI = NOTA_PC5[conocidas5()[0]];
+      pasos = [todo0, pasoLectura5(pz.notas, 'tempo', Object.assign({ pads: true }, o)), pasoLectura5(pz.notas, 'tempo', Object.assign({ unaTecla: MI, base: true, acordes: pz.ac }, o))];
+      cfg.repaso = null; }
+    const ult = pasos[pasos.length - 1]; if (ult && ult.o && ult.o.base && ult.modo === 'tempo') { const o2 = Object.assign({}, ult.o, { bpm: Math.min(V.bpm + 6, tempoDia5() + 6), sinTope: true, var: VARIAS5[0], titulo: V.titulo + ' · ¡otra vez, más rápido!' }); delete o2.clave; pasos.push(pasoLectura5(ult.notas, 'tempo', o2)); }
     return Object.assign(cfg, { pasos, minimo: 0, decor: (P, ctx) => teatroDecor5(P, ctx) }); });
   // TALLER = inventar
   crearParada5('taller', () => ({ pasos: [pasoTaller5(16)], estrellas: P => P.ganadasTaller || 0, corcheas: P => P.ganadasTaller || 0 }));

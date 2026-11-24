@@ -1,0 +1,10 @@
+{
+  "version": "guion-belen-v2",
+  "fecha": "2026-11-24",
+  "app": "MI PIANO 3 · Belén (M8, Charla 7)",
+  "resumen": { "nota": "Frases nuevas de la Charla 7. Sin audio todavía: se muestran como texto hasta grabarlas (ElevenLabs)." },
+  "retirar": [],
+  "frases": [
+    { "id": "visita-sol", "grupo": "visita-sol", "cat": "guia", "personaje": "bach", "emocion": "alegre", "texto": "¡Llegó de visita SOL, con el dedo cinco!", "texto_pantalla": "¡Llegó de visita SOL, con el dedo 5!", "cuando": "Días de una sola nota: la próxima nota del camino visita el Salón.", "dur_max": 4, "archivo": "voces/visita-sol.ogg" }
+  ]
+}

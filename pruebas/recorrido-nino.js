@@ -7,16 +7,16 @@ fs.mkdirSync(OUT, { recursive: true });
 const espera = ms => new Promise(r => setTimeout(r, ms));
 (async () => {
   const b = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'] });
-  const cx = await b.newContext({ viewport: { width: 1280, height: 800 }, hasTouch: true, serviceWorkers: 'block' }), pg = await cx.newPage();
+  const cx = await b.newContext({ viewport: { width: 1280, height: 800 }, hasTouch: true }), pg = await cx.newPage();
   const errs = []; pg.on('pageerror', e => errs.push(e.message)); pg.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
-  await pg.goto('http://localhost:8765/'); await pg.waitForFunction(() => window.__mp3 && window.__mp3.listo, null, { timeout: 90000 });
+  await pg.goto('http://localhost:8765/'); await espera(4000); await pg.reload(); await pg.waitForFunction(() => window.__mp3 && window.__mp3.listo, null, { timeout: 90000 });
   await pg.evaluate(f => { localStorage.clear(); __mp3.fecha(f); }, FECHA);
   await espera(800); await pg.touchscreen.tap(260, 380);
   await pg.evaluate(() => {
     window.__R = { tics: [], cuentas: [], est: [] };
     const ti = SON5.ticEn.bind(SON5), cu = SON5.cuenta.bind(SON5);
     SON5.ticEn = (uno, at) => { __R.tics.push({ a: +(+at).toFixed(3), now: +KitSonido.ahora().toFixed(3) }); return ti(uno, at); };
-    window.__V=[]; const dz = Voz5.decir.bind(Voz5); Voz5.decir = (c, o) => { const r = dz(c, o); const reg = Voz5.registro[Voz5.registro.length-1]; __V.push({ w: Date.now(), c: String(c), id: reg && reg.id, t: textoDeVoz5(reg && reg.id, '') , esc: __mp3.dia().escena, k: ESC && ESC.k }); return r; };
+    window.__V=[]; const dz = Voz5.decir.bind(Voz5); Voz5.decir = (c, o) => { const r = dz(c, o); if (!r) return r; const reg = Voz5.registro[Voz5.registro.length-1]; __V.push({ w: Date.now(), c: String(c), id: r, audio: !!(window.VOCES && VOCES[r]), t: textoDeVoz5(r, '') , esc: __mp3.dia().escena, k: ESC && ESC.k }); return r; };
     SON5.cuenta = (n, at, de) => { __R.cuentas.push({ n, a: +(+at).toFixed(3) }); return cu(n, at, de); };
   });
   await pg.evaluate(([t, f, v]) => { __mp3.nino(t, f); __mp3.vel(v); }, [TIPO, FUENTE, VEL]);

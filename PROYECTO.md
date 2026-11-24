@@ -98,3 +98,12 @@ Dani aprobó el nivel gráfico de las imágenes de Gemini (MCP «Gemini Imágene
 - 2026-11-23-mp3-salon-bach-12e61315 (5-salon-bach.jpg: así deben verse los interiores)
 - 2026-11-23-mp3-titulo-40138406 (6-titulo.jpg: fondo de título, hueco para el logo)
 Estilo: pixel art moderno de alta calidad, contornos oscuros, 2–3 tonos, chibi; noche azul-morada sutil con luz cálida; notas en los 7 colores DO–SI. Sin texto en las imágenes (el texto lo pone el juego).
+
+## Charla 7 (24-nov) · prueba del día 1 como niño — decisiones
+- Cuenta: cada número cae con su vocal en el clic (hecho en M8a).
+- Clic: a tempo no se apaga en todo el momento; si el niño se queda quieto, el clic sigue y Tic lo invita con un gesto. En oído (¿igual o diferente?) sin clic pero con fondo musical suave. Cuenta completa solo al empezar; las rondas seguidas entran sin cortar con un «¡otra!». Un solo tempo en todo el día.
+- Repetición: Salón 5–6 rondas, cada 2 cambia algo grande que se ve; además puede entrar otra nota («no solo mi mi mi»). Coro día 1: cantar MI y eco de ritmos; «¿sube o baja?» desde que haya dos notas. El día puede seguir con sus 5 lugares (~12 min) pero con mucha más variedad. Variaciones que se ven y se juegan, no solo «más rápido». Teatro día 1: escuchar Jingle Bells una vez y tocar el «Jingle bells» en MI con la banda, 2 veces.
+- Explicación: mini intro de Bach (dice, toca una vez, Tic lo hace con el niño; 15–20 s, saltable), completa la primera vez y cuando entra algo nuevo; luego 3 s. Barras: la primera vez bajan a su tecla, MI brilla, «corto: tan, largo: taaan». Mano que pone el dedo. Letreros con frase de juego. Recorrido el día 1 solo con los 5 lugares del día. Texto = voz siempre.
+- Voces: una vez por paso, con variantes; una sola frase de entrada; Bach explica, Tic anima, vecinos solo en rincones.
+- Al terminar: explora libre y puede seguir aprendiendo (no solo MI).
+- Orden: cuenta y clic → repetición días 1–3 → mini intros y voces → ElevenLabs (voces y música). Cada arreglo se sube a pruebas para que Dani lo juegue.
