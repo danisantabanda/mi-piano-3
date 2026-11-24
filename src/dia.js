@@ -322,7 +322,7 @@ function paseo5(desde, hacia, op = {}) {
   const caminar = () => { B.ir(o2.puerta, () => { B.jugador.dir = 'arriba'; setTimeout(() => { B.auto = false; B.velAuto = 0; B.extraHud = null; irA(PARADA5[hacia], B.irisEn(o2)); }, 250 / VEL5); }); };
   const m = m2_(), primera = !m.recorridoVisto;
   B.alEntrar = desde || op.sinRecorrido ? caminar : () => {
-    if (primera) { m.recorridoVisto = true; GUARDA.guardar(); voz5('bach-recorrido', { hito: true }); B.alTurno = o => voz5('lugar-' + (o.lugar || ''), { hito: true, prioridad: 6 }); B.recorrido(['establo', 'salon', 'patio', 'coro', 'teatro', 'taller', 'conservatorio', 'torre', 'ritmo', 'biblioteca', 'arena', 'gimnasio', 'museo', 'kiosco', 'sala', 'luthier', 'casa'].map(id => B.objetos.find(o => o.lugar === id)).filter(Boolean), caminar, 1.7); }
+    if (primera) { m.recorridoVisto = true; GUARDA.guardar(); voz5('bach-recorrido', { hito: true }); B.alTurno = o => voz5('lugar-' + (o.lugar || ''), { hito: true, prioridad: 6 }); B.recorrido(['establo', 'patio', 'coro', 'salon', 'teatro', 'taller']   /* M8: el primer día solo los lugares del día; los demás se presentan cuando se abren */.map(id => B.objetos.find(o => o.lugar === id)).filter(Boolean), caminar, 1.7); }
     else { B.recorrido([B.objetos.find(o => o.lugar === 'establo'), o2].filter(Boolean), caminar, 2.5); }   // después: 5 s
     B.tour.saltable = !primera; };
   marca5('paseo ' + (desde || 'puerta') + ' → ' + hacia);

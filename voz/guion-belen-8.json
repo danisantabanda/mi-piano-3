@@ -1,10 +1,162 @@
 {
-  "version": "guion-belen-v2",
-  "fecha": "2026-11-24",
-  "app": "MI PIANO 3 · Belén (M8, Charla 7)",
-  "resumen": { "nota": "Frases nuevas de la Charla 7. Sin audio todavía: se muestran como texto hasta grabarlas (ElevenLabs)." },
-  "retirar": [],
-  "frases": [
-    { "id": "visita-sol", "grupo": "visita-sol", "cat": "guia", "personaje": "bach", "emocion": "alegre", "texto": "¡Llegó de visita SOL, con el dedo cinco!", "texto_pantalla": "¡Llegó de visita SOL, con el dedo 5!", "cuando": "Días de una sola nota: la próxima nota del camino visita el Salón.", "dur_max": 4, "archivo": "voces/visita-sol.ogg" }
-  ]
+ "version": "guion-belen-v2",
+ "fecha": "2026-11-24",
+ "app": "MI PIANO 3 · Belén (M8, Charla 7)",
+ "resumen": {
+  "nota": "Frases nuevas de la Charla 7. Sin audio todavía: se muestran como texto hasta grabarlas (ElevenLabs)."
+ },
+ "retirar": [],
+ "frases": [
+  {
+   "id": "visita-sol",
+   "grupo": "visita-sol",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "alegre",
+   "texto": "¡Llegó de visita SOL, con el dedo cinco!",
+   "texto_pantalla": "¡Llegó de visita SOL, con el dedo 5!",
+   "cuando": "Días de una sola nota: la próxima nota del camino visita el Salón.",
+   "dur_max": 4,
+   "archivo": "voces/visita-sol.ogg"
+  },
+  {
+   "id": "muestra-nota-do",
+   "grupo": "muestra-nota-do",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es DO. Pon aquí tu dedo uno y tócala.",
+   "texto_pantalla": "Esta es DO. Pon aquí tu dedo 1 y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-do.ogg"
+  },
+  {
+   "id": "muestra-nota-re",
+   "grupo": "muestra-nota-re",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es RE. Pon aquí tu dedo dos y tócala.",
+   "texto_pantalla": "Esta es RE. Pon aquí tu dedo 2 y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-re.ogg"
+  },
+  {
+   "id": "muestra-nota-mi",
+   "grupo": "muestra-nota-mi",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es MI. Pon aquí tu dedo tres y tócala.",
+   "texto_pantalla": "Esta es MI. Pon aquí tu dedo 3 y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-mi.ogg"
+  },
+  {
+   "id": "muestra-nota-fa",
+   "grupo": "muestra-nota-fa",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es FA. Pon aquí tu dedo cuatro y tócala.",
+   "texto_pantalla": "Esta es FA. Pon aquí tu dedo 4 y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-fa.ogg"
+  },
+  {
+   "id": "muestra-nota-sol",
+   "grupo": "muestra-nota-sol",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es SOL. Pon aquí tu dedo cinco y tócala.",
+   "texto_pantalla": "Esta es SOL. Pon aquí tu dedo 5 y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-sol.ogg"
+  },
+  {
+   "id": "muestra-nota-la",
+   "grupo": "muestra-nota-la",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es LA. Pon aquí un dedo y tócala.",
+   "texto_pantalla": "Esta es LA. Pon aquí un dedo y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-la.ogg"
+  },
+  {
+   "id": "muestra-nota-si",
+   "grupo": "muestra-nota-si",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Esta es SI. Pon aquí un dedo y tócala.",
+   "texto_pantalla": "Esta es SI. Pon aquí un dedo y tócala.",
+   "cuando": "Mini intro del Salón: la nota nueva del día, con la mano sobre su tecla.",
+   "dur_max": 5,
+   "archivo": "voces/muestra-nota-si.ogg"
+  },
+  {
+   "id": "muestra-tan",
+   "grupo": "muestra-tan",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Corto: tan.",
+   "cuando": "Mini intro del Salón: el ritmo nuevo mientras suena.",
+   "dur_max": 3,
+   "archivo": "voces/muestra-tan.ogg"
+  },
+  {
+   "id": "muestra-taaan",
+   "grupo": "muestra-taaan",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Largo: taaan.",
+   "cuando": "Mini intro del Salón: el ritmo nuevo mientras suena.",
+   "dur_max": 3,
+   "archivo": "voces/muestra-taaan.ogg"
+  },
+  {
+   "id": "muestra-sh",
+   "grupo": "muestra-sh",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Sh: el silencio no se toca.",
+   "cuando": "Mini intro del Salón: el ritmo nuevo mientras suena.",
+   "dur_max": 3,
+   "archivo": "voces/muestra-sh.ogg"
+  },
+  {
+   "id": "muestra-taca",
+   "grupo": "muestra-taca",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Taca: dos notas en un pulso.",
+   "cuando": "Mini intro del Salón: el ritmo nuevo mientras suena.",
+   "dur_max": 3,
+   "archivo": "voces/muestra-taca.ogg"
+  },
+  {
+   "id": "muestra-taaaaan",
+   "grupo": "muestra-taaaaan",
+   "cat": "guia",
+   "personaje": "bach",
+   "emocion": "calma",
+   "texto": "Muy largo: taaaaan.",
+   "cuando": "Mini intro del Salón: el ritmo nuevo mientras suena.",
+   "dur_max": 3,
+   "archivo": "voces/muestra-taaaaan.ogg"
+  }
+ ]
 }

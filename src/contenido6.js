@@ -94,6 +94,42 @@ function pasoEncontrar5() {
     const k = 1 + .12 * Math.sin(P.t * 9) * (P.ticCanta > P.t ? 1 : 0); ctx.save(); ctx.translate(LW5 / 2, 300); ctx.scale(k, k); figura5c(ctx, 'negra', 0, 22, 22, { color: S.res ? COLOR_NOTA5(S.n) : '#e9e4ee' }); ctx.restore(); if (S.res) texto(ctx, NOMBRE_NOTA5(S.n), LW5 / 2 + 110, 300, { tam: 46, c: MK5, peso: 700 }); };
   return S;
 }
+
+// =====================================================================
+//  M8 · «Bach lo muestra»: la mini intro de lo nuevo del día. La nota nueva (con la mano y el dedo sobre su tecla)
+//  y los ritmos nuevos (la barra baja a la tecla mientras suena). Solo la primera vez; texto = voz (guion-belen-8).
+// =====================================================================
+function loNuevo5(d) { const a = planDia5(d), b = d > 0 ? planDia5(d - 1) : { notas: [], ritmos: [] };
+  return { notas: a.notas.filter(pc => !b.notas.includes(pc)).map(pc => NOTA_PC5[pc]), ritmos: a.ritmos.filter(r => !b.ritmos.includes(r)) }; }
+const MUESTRA_DUR5 = { tan: 1, taaan: 2, sh: 1, taca: .5, taaaaan: 4 };
+function pasoMuestra5(d) {
+  const N = loNuevo5(d), fases = [];
+  /* la nota nueva ya tiene su tarjeta (con la mano, el dedo y Bach que la canta): aquí solo los ritmos */ if (false) N.notas.forEach(n => fases.push({ tipo: 'nota', n, voz: 'muestra-nota-' + NOMBRE_NOTA5(n).toLowerCase(), txt: 'Esta es ' + NOMBRE_NOTA5(n) + '. Pon aquí ' + (DEDO5[n] ? 'tu dedo ' + DEDO5[n] : 'un dedo') + ' y tócala.' }));
+  const n0 = N.notas[0] || NOTA_PC5[planDia5(d).notas[0]];
+  N.ritmos.forEach(r => fases.push({ tipo: 'ritmo', r, n: n0, voz: 'muestra-' + r, txt: { tan: 'Corto: tan.', taaan: 'Largo: taaan.', sh: 'Sh: el silencio no se toca.', taca: 'Taca: dos notas en un pulso.', taaaaan: 'Muy largo: taaaaan.' }[r] || r }));
+  const S = { eval: false, tipo: 'muestra', o: { corto: true }, fases, i: 0 };
+  const fase = () => S.fases[S.i];
+  function empezarFase(P) { const f = fase(); if (!f) { S.listo = true; return; } f.t0 = P.t; f.ok = false; const v = voz5(f.voz, { forzar: true }); f.txtV = textoDeVoz5(v || f.voz, f.txt);
+    if (f.tipo === 'nota') { TECLADO5.dedos = Object.assign({}, TECLADO5.dedos || {}, DEDO5[f.n] ? { [f.n]: DEDO5[f.n] } : {}); pista5(f.n, 30); }
+    else { const b = 60 / tempoDia5(); f.ev = []; let t = P.t + .8; const golpes = f.r === 'taca' ? [.5, .5] : [MUESTRA_DUR5[f.r] || 1]; golpes.forEach(g => { f.ev.push({ t, d: g }); t += g * b; }); f.fin = t + 1.2; f.k = 0; } }
+  S.iniciar = P => { S.i = 0; S.listo = false; if (!S.fases.length) { S.listo = true; return; } empezarFase(P); };
+  S.paso = P => { const f = fase(); if (!f) return;
+    if (f.tipo === 'ritmo') { const b = 60 / tempoDia5(); while (f.k < f.ev.length && P.t >= f.ev[f.k].t) { const e = f.ev[f.k++]; if (f.r !== 'sh') { SON5.nota(f.n, 80); pista5(f.n, e.d * b * .9); } P.ticCanta = P.t + e.d * b; } if (P.t >= f.fin) { S.i++; empezarFase(P); } }
+    else if (f.ok && P.t - f.ok > 1.2) { delete TECLADO5.pistas[f.n]; S.i++; empezarFase(P); } };
+  S.nota = (P, n) => { const f = fase(); if (!f || f.tipo !== 'nota' || f.ok) return null; if (n % 12 === f.n % 12) { f.ok = P.t; SON5.acorde(n); P.fx.estallar(xDeTecla(n), 560, COLOR_NOTA5(n), 26); return 'ok'; } pista5(f.n, 30); return 'error'; };
+  S.tocar = (P, x, y) => { const f = fase(); if (f && f.tipo === 'ritmo' && P.t - f.t0 > 1) { f.fin = Math.min(f.fin, P.t); } };
+  S.objetivo = P => { const f = fase(); return f && f.tipo === 'nota' && !f.ok && P.t - f.t0 > 1.2 ? { id: 'M' + S.i + f.t0.toFixed(2), n: f.n, t: f.t0 + 1.4, reaccion: true } : null; };
+  S.dibujar = (P, ctx) => { const f = fase(); if (!f) return; if (f.tipo === 'ritmo') { caja5(ctx, 250, 140, 780, 330, { r: 22, borde: 5, sombra: 8, cab: COLOR_NOTA5(f.n), cabH: 18 }); titulo5(ctx, f.txtV || f.txt, LW5 / 2, 210, 40, MK5); } else burbuja5(ctx, 330, 160, 700, f.txtV || f.txt, P.t - f.t0, { cola: [940, 400], colaDx: 130 });
+    const x = xDeTecla(f.n), y0 = TECLADO5.y;
+    if (f.tipo === 'nota') { const yb = y0 - 70 + Math.sin(P.t * 5) * 8;   // la mano: un dedo grande con su número que apunta a la tecla
+      ctx.save(); caja5(ctx, x - 34, yb - 44, 68, 68, { r: 34, borde: 5, sombra: 5, fondo: COLOR_NOTA5(f.n) }); titulo5(ctx, String(DEDO5[f.n] || '☝'), x, yb - 8, 38, MK5);
+      ctx.fillStyle = MK5; ctx.beginPath(); ctx.moveTo(x - 14, yb + 26); ctx.lineTo(x + 14, yb + 26); ctx.lineTo(x, yb + 48); ctx.fill(); ctx.restore();
+      titulo5(ctx, NOMBRE_NOTA5(f.n), LW5 / 2, 470, 64, MK5); }
+    else { const b = 60 / tempoDia5(), pxb = 120; let xx = LW5 / 2 - (f.ev.reduce((a, e) => a + e.d, 0) * pxb) / 2;   // las barras: crecen mientras suenan y bajan hacia la tecla
+      f.ev.forEach(e => { const on = P.t >= e.t, q = on ? Math.min(1, (P.t - e.t) / (e.d * b)) : 0, w = e.d * pxb - 10; ctx.save(); ctx.globalAlpha = on ? 1 : .25; rr(ctx, xx, 300, w * Math.max(.08, q), 60, 14); ctx.fillStyle = f.r === 'sh' ? '#fff' : COLOR_NOTA5(f.n); ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = MK5; if (f.r === 'sh') ctx.setLineDash([6, 6]); ctx.stroke(); ctx.restore(); xx += e.d * pxb; });
+      texto(ctx, f.r, LW5 / 2, 420, { tam: 40, c: MK5, peso: 700 }); } };
+  return S;
+}
 // =====================================================================
 //  LAS PARADAS (cada una con su gracia)
 // =====================================================================
@@ -110,6 +146,7 @@ function definirParadas5() {
   // SALÓN DE BACH = lo nuevo: Bach presenta, tú lo pruebas (escalera corta), Bach pregunta y tú respondes, variaciones, lectura
   crearParada5('salon', P => { P.ticPos = [100, 300, 4];
     const pl = plan5(), d = diaPlan5(), Q = secuencia5(d, 10, 3), base = Q[0], pasos = [pasoDialogo5('bach', pl.dice, 'salon-dia-' + pl.dia)];
+    { const m = m2_(), clave = 'muestra-' + d; if (m && !(m.muestras || {})[clave]) { const mu = pasoMuestra5(d), i0 = mu.iniciar; mu.iniciar = P => { m.muestras = m.muestras || {}; m.muestras[clave] = true; i0(P); }; if (mu.fases.length) pasos.push(mu); } }   // M8: Bach lo muestra (solo la primera vez)
     const pregunta = (q) => { const s = pasoLectura5(q.pregunta, 'escucha', { veces: 1, compas: q.compas, titulo: 'Bach pregunta…' }), ini = s.iniciar; s.iniciar = P => { if (s.intento === 0) voz5('salon-pregunta', { forzar: true }); ini(P); }; return s; };
     if (conocidas5().length === 1) {   // M8: días de una sola nota: 5–6 rondas, cada dos cambia algo grande, y una nota de visita
       const vis = Q.find(q => q.invitada), pr = Q.find(q => q.pregunta), otra = Q.find(q => !q.pregunta && !q.invitada && q !== base) || base;

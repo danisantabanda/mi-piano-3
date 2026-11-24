@@ -3,7 +3,7 @@
 // - Las voces (voces/*.ogg + voces/manifiesto.js) y el piano opcional (piano-datos.js, ≈ 9 MB) van en otro caché que sobrevive a los builds.
 //   Si existen, se guardan todas (las voces al instalar y al cambiar el manifiesto; el piano cuando la página avisa que ya cargó);
 //   si no existen, se responde un JS vacío (sin errores en consola).
-const VERSION = 'cc3d6857e8';
+const VERSION = 'ff91332a12';
 const APP = 'mipiano3-app-' + VERSION, DATOS = 'mipiano3-datos';
 const BASE = new URL('./', self.location).href;
 const CASCARON = ['./', 'manifest.webmanifest', 'icono-192.png', 'icono-512.png', 'icono-maskable-512.png', 'apple-touch-icon.png'];
