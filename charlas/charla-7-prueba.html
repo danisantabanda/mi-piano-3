@@ -1,0 +1,246 @@
+<meta charset="utf-8">
+<title>Mi Piano · Charla 7</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Pixelify+Sans:wght@500;700&display=swap">
+<style>
+/* Layout: una columna de lectura; arriba un teclado que se enciende tecla por tecla a medida que respondes. Mundo nocturno del Reino Callado. */
+:root{
+  --bg:#1c1030; --panel:#26173f; --panel2:#2f1e4d; --line:#45306b; --ink:#120a20;
+  --fg:#f6efff; --mute:#b9a8d6; --rec:#ffd046; --rec-soft:rgba(255,208,70,.12); --ok:#5fd36a;
+  --do:#ff5a5a; --re:#ff9a3c; --mi:#ffd046; --fa:#5fd36a; --sol:#3fc7f0; --la:#5a7dff; --si:#b86bff;
+  --f-body:"Outfit",system-ui,"Segoe UI",sans-serif; --f-px:"Pixelify Sans","Outfit",monospace;
+  color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 80px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:2px solid var(--ink)}
+header.top .wrap{padding-block:10px 10px;display:flex;flex-direction:column;gap:8px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand b{font-family:var(--f-px);font-size:20px;letter-spacing:.04em}
+.brand span{color:var(--mute);font-size:14px}
+.keys{display:flex;gap:2px;height:22px;background:var(--ink);padding:2px;border-radius:4px}
+.keys i{flex:1;min-width:0;background:#e9e2f5;border-radius:0 0 3px 3px;transition:background .25s}
+.keys i.on{background:var(--k)}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1 1 100%;min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a,.ctl button{font:inherit;font-size:13.5px;white-space:nowrap;flex:none;background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;min-height:32px;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer}
+.nav a span{width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px}
+.ctl button[aria-pressed="true"]{border-color:var(--rec);color:var(--rec)}
+.st{margin-left:auto;color:var(--mute);font-size:13px;font-variant-numeric:tabular-nums}
+.hero{padding:34px 0 8px}
+.hero .eyebrow{font-family:var(--f-px);color:var(--rec);font-size:14px;letter-spacing:.08em}
+.hero h1{font-size:clamp(30px,6vw,44px);line-height:1.08;margin:6px 0 12px;text-wrap:balance;font-weight:700}
+.hero p{color:var(--mute);margin:0 0 10px;max-width:62ch}
+.how{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--mute);margin-top:14px}
+.how b{color:var(--fg);font-weight:600}
+.blk{scroll-margin-top:150px}
+.blk>h2{display:flex;align-items:center;gap:12px;font-size:25px;margin:46px 0 4px;text-wrap:balance}
+.blk>h2 .dot{flex:none;width:30px;height:30px;border-radius:8px;background:var(--c);border:2px solid var(--ink);box-shadow:inset 0 -5px 0 rgba(0,0,0,.18);font-family:var(--f-px);font-size:15px;color:var(--ink);display:flex;align-items:center;justify-content:center}
+.blk>.sub{color:var(--mute);margin:0 0 16px;max-width:64ch}
+.ins{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;padding:14px 16px;margin:0 0 18px}
+.ins h3{font-family:var(--f-px);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:0 0 8px;font-weight:500}
+.ins ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px}
+.ins li{max-width:68ch}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.q.done{border-color:color-mix(in srgb,var(--c) 60%,transparent)}
+.qh{display:flex;gap:10px;align-items:baseline}
+.qh .n{font-family:var(--f-px);color:var(--c);font-size:15px;min-width:2.1em;font-variant-numeric:tabular-nums}
+.qh h4{margin:0;font-size:18px;font-weight:600;text-wrap:balance}
+.qt{margin:0;max-width:66ch;color:var(--mute)}
+.op{margin:0;max-width:66ch;font-size:15px;border-left:3px solid var(--rec);padding:2px 0 2px 12px}
+.op b{color:var(--rec);font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;background:var(--panel2)}
+.opt input{margin-top:5px;accent-color:var(--rec);flex:none}
+.opt .tx{flex:1;min-width:0}
+.opt.rec{border-color:rgba(255,208,70,.55);background:var(--rec-soft)}
+.tag{display:inline-block;font-family:var(--f-px);font-size:11.5px;letter-spacing:.06em;color:var(--rec);margin-left:8px;white-space:nowrap}
+.opt:has(input:checked){outline:2px solid var(--c);outline-offset:-1px}
+textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;min-height:62px;resize:vertical;width:100%;box-sizing:border-box}
+textarea::placeholder{color:#8f80ad}
+textarea:focus,.opt:focus-within,.nav a:focus-visible,.ctl button:focus-visible{outline:2px solid var(--rec);outline-offset:1px}
+.saved{font-size:12.5px;color:var(--ok);min-height:1em;margin-top:-6px}
+.empty{color:var(--mute);padding:24px 0}
+@media (prefers-reduced-motion:reduce){.keys i{transition:none}}
+.shots{display:grid;gap:10px}
+.shots figure{margin:0;min-width:0}
+.shots button,.oc button{all:unset;cursor:zoom-in;display:block;border-radius:9px;overflow:hidden;border:1px solid var(--line);background:var(--ink)}
+.shots button:focus-visible,.oc button:focus-visible{outline:2px solid var(--rec);outline-offset:2px}
+.shots img,.oc img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.oc{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:11px;padding:8px;background:var(--panel2);min-width:0}
+.oc.rec{border-color:rgba(255,208,70,.6);background:var(--rec-soft)}
+.oc:has(input:checked){outline:2px solid var(--c);outline-offset:-1px}
+.oc label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:2px 4px 4px}
+.oc input{margin-top:5px;accent-color:var(--rec);flex:none}
+#zoom{position:fixed;inset:0;z-index:20;background:rgba(8,4,16,.94);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out}
+#zoom[hidden]{display:none}
+#zoom img{max-width:100%;max-height:100%;border-radius:8px}
+#zclose{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:21;font:inherit;background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:8px 16px;min-height:40px;cursor:pointer}
+.aud{display:flex;flex-direction:column;gap:6px}
+.aud audio,.oc audio{width:100%;height:40px;color-scheme:dark}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><b>MI PIANO</b><span>Charla 7 · El día 1 jugado como niño</span></div>
+  <div class="keys" id="keys" aria-hidden="true"></div>
+  <div class="ctl">
+    <nav class="nav" id="nav"></nav>
+    <button id="f-pend" type="button" aria-pressed="false">Solo sin responder</button>
+    <span class="st" id="st">Cargando respuestas…</span>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">CHARLA 7 · PRUEBA COMO NIÑO</div>
+    <h1>El día 1, jugado como Sarah: qué encontré y cómo lo arreglo</h1>
+    <p>Cuenta, clic, repetición y explicación, medidos en una partida real de 12 minutos. Respondes y yo arreglo en ese orden y lo subo a la página de pruebas.</p>
+    <div class="how"><span><b>Mi recomendada</b> es lo que yo haría; si dudas, déjala.</span><span><b>Otra</b> siempre está, y la caja de abajo es para lo que pienses.</span><span>Todo se guarda solo; puedes volver cuando quieras.</span></div>
+  </section>
+  <div id="list"></div>
+  <footer style="color:var(--mute);font-size:13px;padding:24px 0">Fuente: Morton, J., Marcus, S. y Frankish, C. (1976). Perceptual centers (P-centers). <i>Psychological Review</i>, 83(5), 405–408. <a style="color:var(--mute)" href="https://doi.org/10.1037/0033-295X.83.5.405">doi.org/10.1037/0033-295X.83.5.405</a></footer>
+</main>
+<div id="zoom" hidden role="dialog" aria-label="Imagen grande"><button id="zclose" type="button">Cerrar</button><img id="zimg" alt=""></div>
+
+<script>
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const COL=["var(--do)","var(--re)","var(--mi)","var(--fa)","var(--sol)","var(--la)","var(--si)"];
+// * = mi recomendada. Sin opciones = respuesta abierta.
+const B=[
+{id:"b0",nm:"Cómo leer esto",t:"Cómo leer esta charla",s:"Jugué el día 1 completo como si fuera Sarah, en tiempo real y desde la carta de Bach hasta el órgano, sin saltarme nada. Toca una imagen para verla grande.",ins:[
+ "Lo hice con el niño simulado: acierta casi todo y toca la pantalla. Duró 12 minutos. Registré cada frase de Bach y cada clic de Tic, y medí con el audio dónde cae la cuenta.",
+ "Lo que ya decidiste no te lo pregunto: las voces de ElevenLabs y la música de fondo por mundo van después de esto. Aquí solo va lo que encontré y cómo arreglarlo.",
+ "En cada pregunta, la opción en dorado es la que yo haría. Si dudas, déjala."],q:[]},
+{id:"b1",nm:"Hallazgos",t:"Lo que encontré",s:"Tienes razón: el sistema funciona, pero el contenido no le llega bien al niño. Estos son los hallazgos, con números.",ins:[
+ "La cuenta está corrida y de forma desigual. Cada número suena cuando arranca su audio, pero lo que el oído toma como «el golpe» es la vocal, y esta llega tarde: «un» a 50 ms, «dos» a 160 ms, «tres» a 60 ms y «cuá» a 120 ms. Por eso el «dos» se siente atrasado y la cuenta cojea. Es un efecto conocido: oímos una sílaba en el pulso cuando suena su vocal, no cuando empieza (Morton, Marcus y Frankish, 1976).",
+ "El clic se apaga 21 veces en el día 1. Calla 3 segundos entre cada ronda del Salón (11 veces), un minuto entero en los ejercicios de oído del Coro, 22 segundos en el repaso del Teatro y siempre que el niño pasa 8 segundos sin tocar. Además, cada ronda vuelve a arrancar el pulso desde cero, así que no sigue el compás de la anterior.",
+ "Hay mucha repetición al comienzo. En el Salón son 13 rondas casi iguales de MI con un dedo, unos 3 minutos seguidos. En el Coro, con una sola nota, se pregunta 3 veces «¿sube o baja?» y 3 veces «¿igual o diferente?». El día dura 12 minutos con 5 lugares.",
+ "Casi no hay explicación. Cada momento abre con un letrero de 3 segundos y una frase («Hoy, un solo dedo y una nota: MI»), y de ahí pasa directo a las barras amarillas. Nadie dice qué es una barra, qué es «tan» y «taaan», ni muestra el dedo 3.",
+ "Las voces se repiten y se pisan. Muchas frases suenan dos veces por paso, por ejemplo «¡Otra vez! Un poquito más rápido» en dos rondas seguidas. Al entrar al Teatro suenan 3 frases en el mismo segundo. Y «Yo te espero» sonó en una ronda que era a tempo.",
+ "La llegada abruma. El primer día, el recorrido presenta 16 lugares en 28 segundos, y el niño solo va a usar 5. Al terminar el órgano, el niño queda parado en Belén sin saber qué sigue."],q:[
+ {id:"c7-h1",t:"¿Esto coincide con lo que sentiste al probarlo?",o:["*Sí, en lo principal","En parte (cuento abajo qué no)","No: lo que más me molestó es otra cosa"]}]},
+{id:"b2",nm:"Cuenta y clic",t:"La cuenta y el clic",s:"Lo que más se siente al tocar. Es lo primero que arreglaría.",ins:[
+ "Arreglo la cuenta adelantando cada número lo que tarda en llegar su vocal, para que la vocal caiga justo en el clic. Abajo están las dos versiones para que las compares (el clic es de prueba, no el del juego).",
+ "El clic debería ser como un metrónomo de verdad: que no se apague entre rondas y que todo el momento siga un mismo pulso. Lo que cambia es la música encima, no el reloj."],q:[
+ {id:"c7-c1",t:"Compara la cuenta: arreglada y como suena hoy",oa:["c7-cuenta-arreglada","c7-cuenta-hoy"],o:["*La arreglada: cada número cae en el clic","Igual que hoy"]},
+ {id:"c7-c2",t:"¿Cuándo suena el clic en el Salón y el Teatro?",o:["*Sin parar durante todo el momento: las rondas se encadenan en el mismo pulso, como una canción","Solo mientras el niño toca","Que yo lo prenda y apague en el modo Papá"]},
+ {id:"c7-c3",t:"Si el niño deja de tocar 8 segundos",o:["*El clic sigue y Tic lo invita con un gesto («¡tu turno!»)","El clic se calla, como hoy","Se calla y vuelve la cuenta para reentrar"]},
+ {id:"c7-c4",t:"¿Y en los ejercicios de oído del Coro (¿igual o diferente?)",img:["c7-coro-igual"],o:["*Sin clic, pero con un fondo musical suave para que no quede vacío","Con clic","Silencio total"]},
+ {id:"c7-c5",t:"La cuenta antes de cada ronda",img:["c7-salon-tempo"],o:["*Cuenta completa solo al empezar; las rondas siguientes entran sin cortar, con un «¡otra!» en el último pulso","Cuenta antes de cada ronda, como hoy"]},
+ {id:"c7-c6",t:"El tempo cambia: la carta va a 80 y el día 1 a 56",o:["*Un solo tempo en todo el día, el que toca ese día","Así está bien"]}]},
+{id:"b3",nm:"Repetición",t:"La repetición al comienzo",s:"Lo que dijiste: muy repetitivo al comienzo.",ins:[
+ "Con una sola nota y dos ritmos no da para 13 rondas. Para un niño de 4 a 6 años sirven más las rondas cortas, cada una con un cambio que se vea y se oiga: Tic baila, entra la banda, Sansón aplaude, cambia el instrumento. Esta parte es mi opinión, no un estudio.",
+ "El día 1 debería ser corto y sentirse como un éxito. Lo que no tiene sentido con una sola nota (¿sube o baja?) mejor se espera hasta que haya dos."],q:[
+ {id:"c7-r1",t:"Rondas del Salón el día 1 (hoy son 13)",img:["c7-salon-barras","c7-salon-otra"],o:["*5 o 6 rondas, y cada 2 cambia algo grande que se ve","8 rondas","Así, 13"]},
+ {id:"c7-r2",t:"El Coro con una sola nota",img:["c7-coro-buscala"],o:["*El día 1, cantar MI y jugar al eco de ritmos; «¿sube o baja?» entra cuando haya dos notas (día 4)","Así"]},
+ {id:"c7-r3",t:"¿Cuánto dura el día 1?",o:["*Unos 8 minutos: Patio, Salón y Teatro; el Coro y el Taller se abren el día 2","12 minutos, como hoy","Menos de 6"]},
+ {id:"c7-r4",t:"¿Cómo se anuncian las variaciones?",o:["*Con algo que se ve y se juega (la banda entra, Tic baila, cambia el instrumento) y no solo con «más rápido»","Así, con el letrero de «¡Otra vez!»"]},
+ {id:"c7-r5",t:"El Teatro el día 1",img:["c7-teatro-toda","c7-teatro-tempo"],o:["*Escuchar Jingle Bells una vez y tocar solo el «Jingle bells» en MI con la banda, 2 veces","Así: 4 pedazos y un repaso"]},
+ {id:"c7-r6",t:"¿Qué parte te aburrió más al probar?",o:[]}]},
+{id:"b4",nm:"Explicación",t:"Una mini introducción a cada momento",s:"Lo que dijiste: le falta explicación, como sea una mini intro.",ins:[
+ "Propongo que Bach lo muestre antes de pedirlo: «Mira, esto es tan» (lo toca), «y esto es taaan» (lo toca largo), «ahora tú con Tic». Son 15 a 20 segundos, se saltan tocando y solo van completos la primera vez.",
+ "Las barras amarillas necesitan su presentación: la primera vez, la barra baja hasta su tecla, MI brilla y una mano muestra el dedo 3."],q:[
+ {id:"c7-i1",t:"¿Cómo es la mini intro?",img:["c7-salon-intro"],o:["*Bach dice qué vamos a hacer, lo toca una vez y Tic lo hace con el niño (15–20 s, se salta tocando)","Solo voz y texto, 5 s","Una animación sin voz"]},
+ {id:"c7-i2",t:"¿Cuándo va completa?",o:["*La primera vez de cada momento y cada vez que entra algo nuevo (nota, figura); los demás días, 3 s","Siempre completa"]},
+ {id:"c7-i3",t:"Las barras amarillas",img:["c7-salon-barras"],o:["*La primera vez, la barra baja a su tecla, MI brilla y Bach dice «corto: tan, largo: taaan»","Cambiarlas por notas desde el día 1","Así"]},
+ {id:"c7-i4",t:"El dedo",o:["*Una mano en pantalla pone el dedo 3 sobre MI antes de empezar (y al llegar cada nota nueva)","No hace falta"]},
+ {id:"c7-i5",t:"El letrero de entrada a cada lugar",img:["c7-salon-anuncio"],o:["*Una frase de juego, no de clase: «¡Al Salón! Bach tiene un ritmo secreto para ti»","Así: «Al Salón: algo nuevo con Bach»"]},
+ {id:"c7-i6",t:"El recorrido de llegada: 16 lugares en 28 segundos",img:["c7-recorrido"],o:["*El primer día, solo los 5 lugares del día; los demás se presentan cuando se abren","Así, los 16"]},
+ {id:"c7-i7",t:"La carta de Bach al empezar",img:["c7-carta"],o:["*Así: corta y bonita","Más corta","Que Bach la lea con más calma"]}]},
+{id:"b5",nm:"Voces",t:"Lo que dice Bach",s:"Antes de pasar a ElevenLabs conviene ordenar cuándo habla cada uno.",ins:[
+ "Regla simple: cada frase suena una sola vez por paso, una por vez, y si hay que repetir se usa otra variante («¡Otra vez!», «¡De nuevo!», «¡Una más!»).",
+ "Con esto ordenado, el cambio a ElevenLabs es solo cambiar los audios."],q:[
+ {id:"c7-v1",t:"Frases que se repiten en cada ronda",o:["*Una vez por paso y con variantes","Así"]},
+ {id:"c7-v2",t:"Al entrar a un lugar suenan 3 frases juntas",o:["*Una sola frase de entrada; lo demás llega cuando toca","Así"]},
+ {id:"c7-v3",t:"¿Quién habla en cada momento?",o:["*Bach explica y enseña; Tic anima y lleva el pulso; los vecinos solo en los rincones","Solo Bach"]}]},
+{id:"b6",nm:"Al terminar",t:"Al terminar la misión",s:"Después del órgano, el niño queda en Belén sin saber qué sigue.",ins:["Un cierre claro ayuda a que el niño lo viva como un logro y a que el día termine bien."],q:[
+ {id:"c7-f1",t:"¿Qué pasa después del órgano?",img:["c7-belen-fin"],o:["*Bach lo lleva al rincón que despertó, dice «mañana seguimos» y el día cierra solo","Explora libre hasta que papá cierre","Vuelve al título"]}]},
+{id:"b7",nm:"Seguir",t:"Para seguir",s:"Con tus respuestas arreglo y lo subo a la página de pruebas.",ins:["Mi orden: primero la cuenta y el clic (lo que más se siente), luego recortar la repetición de los días 1 a 3, después las mini intros y el orden de las voces. Al final, las voces y la música de ElevenLabs."],q:[
+ {id:"c7-z1",t:"¿En qué orden?",o:["*Cuenta y clic → repetición de los días 1–3 → mini intros y voces → ElevenLabs (voces y música)","Primero ElevenLabs","Todo junto"]},
+ {id:"c7-z2",t:"¿Cómo lo pruebas?",o:["*Te subo cada arreglo a pruebas en cuanto esté y lo juegas con tu teclado","Todo junto al final"]},
+ {id:"c7-z3",t:"Lo que no te pregunté y debí preguntar",o:[]}]}
+];
+
+
+
+
+let n=1; const Q=[];
+B.forEach((b,bi)=>{b.c=COL[bi%7];b.q.forEach(x=>{Q.push(Object.assign({n:n++,b:b.id,c:b.c},x))})});
+const R={}; let db=null, pend=false;
+const $=s=>document.querySelector(s); const st=$("#st");
+const isDone=id=>{const r=R[id]||{};return r.opcion!=null||!!(r.comentario||"").trim()};
+$("#keys").innerHTML=Q.map(x=>`<i style="--k:${x.c}" data-k="${x.id}"></i>`).join("");
+$("#nav").innerHTML=B.map(b=>`<a href="#${b.id}"><span style="--c:${b.c}"></span>${esc(b.nm)}</a>`).join("");
+function fig(id,alt){return `<figure><button type="button" data-zoom="img/${id}.jpg" aria-label="Ver grande: ${esc(alt)}"><img src="img/${id}.jpg" alt="${esc(alt)}" loading="lazy"></button></figure>`}
+function qHTML(x){
+  const r=R[x.id]||{};
+  const radio=(i,t,rec)=>`<input type="radio" name="${x.id}" value="${i}"${r.opcion===i?" checked":""}><span class="tx">${esc(t)}${rec?'<span class="tag">MI RECOMENDADA</span>':""}</span>`;
+  let opts="";
+  if(x.oa){
+    opts=`<div class="cards" role="radiogroup" aria-label="${esc(x.t)}">`+x.o.map((o,i)=>{const rec=o[0]==="*";const t=rec?o.slice(1):o;const a=x.oa[i];
+      return `<div class="oc${rec?" rec":""}">${a?`<audio controls preload="none" src="aud/${a}.mp3" aria-label="Oír: ${esc(t)}"></audio>`:""}<label>${radio(i,t,rec)}</label></div>`}).join("")+
+      `<div class="oc"><label>${radio(9,"Otra: la escribo abajo",false)}</label></div></div>`;
+  }else if(x.oi){
+    opts=`<div class="cards" role="radiogroup" aria-label="${esc(x.t)}">`+x.o.map((o,i)=>{const rec=o[0]==="*";const t=rec?o.slice(1):o;const im=x.oi[i];
+      return `<div class="oc${rec?" rec":""}">${im?fig(im,t):""}<label>${radio(i,t,rec)}</label></div>`}).join("")+
+      `<div class="oc"><label>${radio(9,"Otra: la escribo abajo",false)}</label></div></div>`;
+  }else if(x.o.length){
+    opts=`<div class="opts" role="radiogroup" aria-label="${esc(x.t)}">`+x.o.map((o,i)=>{const rec=o[0]==="*";const t=rec?o.slice(1):o;
+      return `<label class="opt${rec?" rec":""}">${radio(i,t,rec)}</label>`}).join("")+`<label class="opt">${radio(9,"Otra: la escribo abajo",false)}</label></div>`;
+  }
+  const auds=x.au?`<div class="aud">${x.au.map(a=>`<audio controls preload="none" src="aud/${a}.mp3" aria-label="Oír"></audio>`).join("")}</div>`:"";
+  const shots=x.img?`<div class="shots">${x.img.map(id=>fig(id,x.t)).join("")}</div>`:"";
+  return `<section class="q${isDone(x.id)?" done":""}" id="${x.id}" style="--c:${x.c}"><div class="qh"><span class="n">${String(x.n).padStart(2,"0")}</span><h4>${esc(x.t)}</h4></div>`+
+    (x.q?`<p class="qt">${esc(x.q)}</p>`:"")+shots+auds+(x.op?`<p class="op"><b>Mi opinión:</b> ${esc(x.op)}</p>`:"")+opts+
+    `<textarea id="${x.id}-c" placeholder="${x.o.length?"Tus pensamientos (opcional)":"Escribe aquí"}">${esc(r.comentario||"")}</textarea><div class="saved" id="${x.id}-s"></div></section>`;
+}
+function render(){
+  let h="", shown=0;
+  B.forEach(b=>{
+    const qs=Q.filter(x=>x.b===b.id&&(!pend||!isDone(x.id)));
+    if(pend&&!qs.length) return;
+    h+=`<div class="blk" id="${b.id}" style="--c:${b.c}"><h2><span class="dot">${B.indexOf(b)}</span>${esc(b.t)}</h2><p class="sub">${esc(b.s)}</p>`;
+    if(!pend) h+=`<div class="ins"><h3>${b.id==="b0"?"Mi lectura":"Lo que pienso"}</h3><ul>${b.ins.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`;
+    qs.forEach(x=>{h+=qHTML(x);shown++}); h+=`</div>`;
+  });
+  $("#list").innerHTML=h; if(pend&&!shown) $("#list").insertAdjacentHTML("beforeend",'<p class="empty">No queda ninguna sin responder. ¡Gracias!</p>');
+  prog();
+}
+function prog(){
+  const d=Q.filter(x=>isDone(x.id)).length;
+  document.querySelectorAll("#keys i").forEach(k=>k.classList.toggle("on",isDone(k.dataset.k)));
+  if(db) st.textContent=`${d} de ${Q.length} respondidas`;
+}
+const timers={};
+async function save(id){
+  const r=R[id]||{}; const s=document.getElementById(id+"-s");
+  if(!db){if(s) s.textContent="Sin conexión: no se pudo guardar";return}
+  try{await db.doc("respuestas/"+id).set({opcion:r.opcion??null,comentario:r.comentario||"",cuando:new Date().toISOString()});
+    if(s) s.textContent="Guardado"; const c=document.getElementById(id); if(c) c.classList.toggle("done",isDone(id)); prog();
+  }catch(e){if(s) s.textContent="No se pudo guardar ("+(e&&e.code||"error")+"). Vuelve a intentarlo en un momento."}
+}
+document.addEventListener("change",e=>{const t=e.target;if(t.type!=="radio")return;R[t.name]=Object.assign({},R[t.name],{opcion:+t.value});save(t.name)});
+document.addEventListener("input",e=>{const t=e.target;if(t.tagName!=="TEXTAREA")return;const id=t.id.slice(0,-2);R[id]=Object.assign({},R[id],{comentario:t.value});const s=document.getElementById(id+"-s");if(s)s.textContent="…";clearTimeout(timers[id]);timers[id]=setTimeout(()=>save(id),800)});
+$("#f-pend").onclick=()=>{pend=!pend;$("#f-pend").setAttribute("aria-pressed",String(pend));render()};
+const Z=document.getElementById("zoom"),ZI=document.getElementById("zimg");
+document.addEventListener("click",e=>{
+  if(e.target.closest("#zoom")){Z.hidden=true;ZI.removeAttribute("src");return}
+  const b=e.target.closest("[data-zoom]");if(b){e.preventDefault();ZI.src=b.dataset.zoom;ZI.alt=b.getAttribute("aria-label")||"";Z.hidden=false;document.getElementById("zclose").focus()}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){Z.hidden=true}});
+render();
+(async()=>{
+  const to=setTimeout(()=>{if(!db) st.textContent="No pude cargar tus respuestas guardadas"},10000);
+  try{db=window.claude&&await window.claude.use("db")}catch(e){db=null}
+  if(!db){clearTimeout(to);st.textContent="Solo lectura: abre la página con tu cuenta para guardar";return}
+  try{const snap=await db.collection("respuestas").get();clearTimeout(to);
+    snap.docs.forEach(d=>{const v=d.data();if(v)R[d.id]={opcion:v.opcion,comentario:v.comentario}});
+    const a=document.activeElement&&document.activeElement.id; render(); if(a&&document.getElementById(a))document.getElementById(a).focus();
+  }catch(e){clearTimeout(to);st.textContent="No pude cargar tus respuestas guardadas"}
+})();
+</script>
